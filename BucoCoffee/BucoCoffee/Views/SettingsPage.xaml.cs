@@ -1,18 +1,17 @@
 ﻿using BucoCoffee.ViewModels;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace BucoCoffee.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewItemPage : ContentPage
+    public partial class SettingsPage : ContentPage
     {
-        public NewItemPage()
+        public SettingsPage()
         {
             InitializeComponent();
 
-            BindingContext = new NewItemPageViewModel(Navigation);
+            BindingContext = new SettingsPageViewModel(Navigation);
         }
     }
 }

@@ -12,10 +12,16 @@ namespace BucoCoffee.ViewModels
         }
 
         public ICommand GotoNewItemPageCommand => new Command(GotoNewItemPage);
+        public ICommand GotoSettingsPageCommand => new Command(GotoSettingsPage);
 
         async private void GotoNewItemPage()
         {
             await Navigation.PushAsync(new NewItemPage());
+        }
+
+        async private void GotoSettingsPage()
+        {
+            await Navigation.PushAsync(new SettingsPage());
         }
     }
 }
