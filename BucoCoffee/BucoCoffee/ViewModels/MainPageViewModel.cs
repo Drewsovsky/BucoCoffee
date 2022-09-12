@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BucoCoffee.Views;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
@@ -8,15 +9,16 @@ namespace BucoCoffee.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
-        public MainPageViewModel() 
+        public MainPageViewModel(INavigation navigation) 
         {
+            Navigation = navigation;
         }
 
         public ICommand GotoNewItemPageCommand => new Command(GotoNewItemPage);
 
-        private void GotoNewItemPage()
+        async private void GotoNewItemPage()
         {
-            Console.WriteLine("+++");
+            await Navigation.PushAsync(new NewItemPage());
         }
     }
 }

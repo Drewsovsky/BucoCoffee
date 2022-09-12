@@ -15,7 +15,7 @@ namespace BucoCoffee
         {
             InitializeComponent();
 
-            BindingContext = new MainPageViewModel();
+            BindingContext = new MainPageViewModel(this.Navigation);
         }
     }
 }
