@@ -1,182 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage 
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="BucoCoffee.MainPage">
-    <StackLayout
-        BackgroundColor="LightBlue">
-        
-        <!-- Main photo 
-        Камера + Выбираешь из галлереи
-        -->
-        <StackLayout
-            HeightRequest="300"
-            Background="red">
-            <Label
-                Text="Photo"/>
-        </StackLayout>
-        
-        <!-- Collection -->
-        <StackLayout
-            Orientation="Horizontal"
-            HorizontalOptions="Center">
-            <StackLayout
-                HeightRequest="50"
-                WidthRequest="50"
-                BackgroundColor="Green">
-                <Label
-                    Text="1 photo"/>
-            </StackLayout>
-            <StackLayout
-                HeightRequest="50"
-                WidthRequest="50"
-                BackgroundColor="Green">
-                <Label
-                    Text="2 photo"/>
-            </StackLayout>
-            <StackLayout
-                HeightRequest="50"
-                WidthRequest="50"
-                BackgroundColor="Green">
-                <Label
-                    Text="3 photo"/>
-            </StackLayout>
-            <StackLayout
-                HeightRequest="50"
-                WidthRequest="50"
-                BackgroundColor="Green">
-                <Label
-                    Text="4 photo"/>
-            </StackLayout>
-            <StackLayout
-                HeightRequest="50"
-                WidthRequest="50"
-                BackgroundColor="Yellow">
-                <Label
-                    Text="ADD"/>
-            </StackLayout>
-        </StackLayout>
-
-        <StackLayout
-            Padding="12">
-            <!-- Title DropDown -->
-            <StackLayout
-                BackgroundColor="LightCoral"
-                Orientation="Horizontal">
-                <Label
-                    FontSize="24"
-                    FontAttributes="Bold"
-                    Text="Product name"/>
-            </StackLayout>
-
-            <!-- AdditionalInfo -->
-            <StackLayout
-            Spacing="16">
-                <StackLayout>
-                    <!-- Дата фасування -->
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        HorizontalOptions="Start"
-                        Text="Дата фасування"/>
-                        <Label
-                        Text="9/12/2022"
-                        TextColor="White"
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="Blue"/>
-                    </StackLayout>
-                    <!-- Дата на упаковці -->
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        HorizontalOptions="Start"
-                        Text="Дата на упаковці"/>
-                        <Label
-                        Text="9/12/2022"
-                        TextColor="White"
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="Blue"/>
-                    </StackLayout>
-                    <!-- Фасувальник -->
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        HorizontalOptions="Start"
-                        Text="Фасувальник"/>
-                        <Label
-                        Text="Саня Санёчек"
-                        TextColor="White"
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="Purple"/>
-                    </StackLayout>
-                </StackLayout>
-
-                <StackLayout>
-                    <!-- Кількість упаковок -->
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        HorizontalOptions="Start"
-                        Text="Кількість упаковок"/>
-                        <StackLayout
-                        Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand">
-                            <Label
-                            WidthRequest="16"
-                            HorizontalTextAlignment="Center"
-                            Text="-"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                            <Label
-                            Text="666"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                            <Label
-                            WidthRequest="16"
-                            HorizontalTextAlignment="Center"
-                            Text="+"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                        </StackLayout>
-                    </StackLayout>
-                    <!-- Вага -->
-                    <StackLayout
-                    Orientation="Horizontal">
-                        <Label
-                        HorizontalOptions="Start"
-                        Text="Вага"/>
-                        <StackLayout
-                        Orientation="Horizontal"
-                        HorizontalOptions="EndAndExpand">
-                            <Label
-                            WidthRequest="16"
-                            HorizontalTextAlignment="Center"
-                            Text="-"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                            <Label
-                            Text="666"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                            <Label
-                            WidthRequest="16"
-                            HorizontalTextAlignment="Center"
-                            Text="+"
-                            TextColor="White"
-                            BackgroundColor="Magenta"/>
-                        </StackLayout>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-
-            <!-- Comment ADDITIONAL -->
-            <StackLayout
-            BackgroundColor="LightPink"
-            HeightRequest="200">
-                <Label
-                Text="Comment"/>
-            </StackLayout>
-        </StackLayout>
-
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BucoCoffee.MainPage">
+    <StackLayout>
+        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
+            <Label Text="Welcome to Xamarin.Forms!" HorizontalTextAlignment="Center" TextColor="White" FontSize="36"/>
+        </Frame>
+        <Label Text="Start developing now" FontSize="Title" Padding="30,10,30,10"/>
+        <Label Text="Make changes to your XAML file and save to see your UI update in the running app with XAML Hot Reload. Give it a try!" FontSize="16" Padding="30,0,30,0"/>
+        <Label FontSize="16" Padding="30,24,30,0">
+            <Label.FormattedText>
+                <FormattedString>
+                    <FormattedString.Spans>
+                        <Span Text="Learn more at "/>
+                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
+                    </FormattedString.Spans>
+                </FormattedString>
+            </Label.FormattedText>
+        </Label>
     </StackLayout>
+
 </ContentPage>
