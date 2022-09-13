@@ -47,7 +47,9 @@ namespace BucoCoffee.ViewModels
             await _firebaseHelper.AddProductType(TypeTitle, HexConverter(SelectedColor));
 
             ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
+            TypeTitle = String.Empty;
 
+            OnPropertyChanged(nameof(TypeTitle));
             OnPropertyChanged(nameof(ProductTypesList));
         }
 
