@@ -11,5 +11,10 @@ namespace BucoCoffee
 
             BindingContext = new MainPageViewModel(Navigation);
         }
+
+        private void SfButtonCalendar_Clicked(object sender, System.EventArgs e)
+        {
+            dummyDatePicker.Focus();
+        }
     }
 }

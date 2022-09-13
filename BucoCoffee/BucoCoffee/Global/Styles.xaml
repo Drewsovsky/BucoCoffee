@@ -1,6 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ResourceDictionary
     xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
     <!--#region Colors -->
@@ -12,5 +14,62 @@
     <Color x:Key="QuickSilver">#A6A6A8</Color>
     
     <!--#endregion-->
+
+    <!--#region SfTextInputLayout -->
+
+    <Style
+        x:Key="CustomTextInputLayout"
+        TargetType="inputLayout:SfTextInputLayout">
+        <Setter
+            Property="BackgroundColor"
+            Value="Transparent"/>
+        <Setter
+            Property="ContainerBackgroundColor"
+            Value="Transparent" />
+        <Setter
+            Property="FocusedColor"
+            Value="{StaticResource Secondary}" />
+        <Setter
+            Property="UnfocusedColor"
+            Value="{StaticResource Secondary}" />
+        <Setter
+            Property="ErrorColor"
+            Value="red" />
+        <Setter
+            Property="ContainerType"
+            Value="None" />
+        <Setter
+            Property="HorizontalOptions"
+            Value="FillAndExpand" />
+    </Style>
+    
+    <!--#endregion-->
+    
+    <!--#region SFButtons -->
+
+    <Style
+        x:Key="CustomButton"
+        TargetType="buttons:SfButton">
+        <Setter
+            Property="VerticalOptions"
+            Value="CenterAndExpand" />
+        <Setter
+            Property="BackgroundColor"
+            Value="{StaticResource Secondary}" />
+        <Setter
+            Property="TextColor"
+            Value="{StaticResource GhostWhite}" />
+        <Setter
+            Property="CornerRadius"
+            Value="16" />
+    </Style>
+    
+    <!--#endregion-->
     
 </ResourceDictionary>
+    
+<!--
+
+    
+    
+    -->

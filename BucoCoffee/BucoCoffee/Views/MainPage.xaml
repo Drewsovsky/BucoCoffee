@@ -1,41 +1,106 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="BucoCoffee.MainPage"
-             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:local="clr-namespace:BucoCoffee.Models"
-             Title="BucoCoffee">
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="BucoCoffee.MainPage"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:local="clr-namespace:BucoCoffee.Models"
+    Title="BucoCoffee">
     <ContentPage.ToolbarItems>
         <ToolbarItem
             Text="Add item"
             Order="Secondary"
-            Command="{Binding GotoNewItemPageCommand}"/>
+            Command="{Binding GotoNewItemPageCommand}" />
         <ToolbarItem
             Text="Settings"
             Order="Secondary"
-            Command="{Binding GotoSettingsPageCommand}"/>
+            Command="{Binding GotoSettingsPageCommand}" />
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout
-            BackgroundColor="Green">
-            <StackLayout
-                BackgroundColor="Purple"
-                HeightRequest="30">
-                <Label
-                    Text="123"/>
-            </StackLayout>
+            Spacing="0"
+            BackgroundColor="{StaticResource GhostWhite}">
+            <Grid
+                Padding="16,8"
+                RowDefinitions="auto"
+                ColumnDefinitions="2*,8*,2*">
+                <buttons:SfButton
+                    Grid.Column="0"
+                    Style="{StaticResource CustomButton}"
+                    Command="{Binding PastDateCommand}"
+                    ImageSource="left_arrow"
+                    ShowIcon="True"
+                    VerticalOptions="FillAndExpand"
+                    x:Name="SfButtonLeft">
+                    <buttons:SfButton.Content>
+                        <StackLayout
+                            VerticalOptions="CenterAndExpand">
+                            <Image
+                                HeightRequest="18"
+                                Source="left_arrow" />
+                        </StackLayout>
+                    </buttons:SfButton.Content>
+                </buttons:SfButton>
+                <buttons:SfButton
+                    Grid.Column="1"
+                    Style="{StaticResource CustomButton}"
+                    Text="{Binding SelectedDate}"
+                    FontAttributes="Bold"
+                    x:Name="SfButtonCalendar" 
+                    Clicked="SfButtonCalendar_Clicked"/>
+                <DatePicker
+                    x:Name="dummyDatePicker"
+                    Date="{Binding SelectedDate}"
+                    Grid.Column="1"
+                    HeightRequest="1"
+                    Opacity="0"/>
+                <buttons:SfButton
+                    Grid.Column="2"
+                    Style="{StaticResource CustomButton}"
+                    Command="{Binding FutureDateCommand}"
+                    ImageSource="left_arrow"
+                    ShowIcon="True"
+                    VerticalOptions="FillAndExpand"
+                    x:Name="SfButtonRight">
+                    <buttons:SfButton.Content>
+                        <StackLayout
+                            VerticalOptions="CenterAndExpand">
+                            <Image
+                                HeightRequest="18"
+                                Source="right_arrow" />
+                        </StackLayout>
+                    </buttons:SfButton.Content>
+                </buttons:SfButton>
+            </Grid>
+            <BoxView
+                HeightRequest="1"
+                BackgroundColor="{StaticResource QuickSilver}" />
             <syncfusion:SfListView
-                ItemSpacing="6"
-                BackgroundColor="DarkCyan"
+                AutoFitMode="DynamicHeight"
                 ItemsSource="{Binding ProductItemsList}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate
                         x:DataType="local:ProductItem">
                         <StackLayout
-                            Orientation="Horizontal"
-                            BackgroundColor="YellowGreen">
-                            <Label
-                                BackgroundColor="{Binding ProductKeyType.ThemeColor}"
-                                Text="{Binding ProductKeyType.Title}"/>
+                            Padding="16,8">
+                            <Frame
+                                BackgroundColor="{StaticResource LightGray}"
+                                Padding="12"
+                                CornerRadius="16">
+                                <StackLayout
+                                    Orientation="Horizontal">
+                                    <Frame
+                                        CornerRadius="16"
+                                        Padding="8"
+                                        BackgroundColor="{Binding ProductKeyType.ThemeColor}">
+                                        <Label
+                                            FontAttributes="Bold"
+                                            FontSize="24"
+                                            Text="{Binding ProductKeyType.Title}" />
+                                    </Frame>
+                                </StackLayout>
+                            </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
@@ -43,3 +108,30 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
+<!-- 
+    
+    <DataTemplate
+                            x:DataType="local:ProductType">
+    <StackLayout
+        Padding="16,8">
+        <Frame
+            BackgroundColor="{StaticResource LightGray}"
+            Padding="12"
+            CornerRadius="16">
+            <StackLayout
+                Orientation="Horizontal">
+                <Frame
+                    CornerRadius="16"
+                    Padding="8"
+                    BackgroundColor="{Binding ThemeColor}">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        Text="{Binding Title}" />
+                </Frame>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+    </DataTemplate> 
+    
+    -->
