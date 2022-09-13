@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BucoCoffee.MainPage"
+             Title="BucoCoffee">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Add item"
+            Order="Secondary"
+            Command="{Binding GotoNewItemPageCommand}"/>
+        <ToolbarItem
+            Text="Settings"
+            Order="Secondary"
+            Command="{Binding GotoSettingsPageCommand}"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

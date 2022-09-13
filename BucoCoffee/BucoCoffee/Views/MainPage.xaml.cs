@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using BucoCoffee.ViewModels;
 using Xamarin.Forms;
 
 namespace BucoCoffee
@@ -13,6 +8,8 @@ namespace BucoCoffee
         public MainPage()
         {
             InitializeComponent();
+
+            BindingContext = new MainPageViewModel(Navigation);
         }
     }
 }

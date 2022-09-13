@@ -11,7 +11,32 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
-    <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
+    <PackageReference Include="FirebaseDatabase.net" Version="4.1.0" />
+    <PackageReference Include="Syncfusion.Xamarin.Buttons" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.Core" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfCarousel" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfComboBox" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfListView" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfNumericUpDown" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPicker" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPopupLayout" Version="20.2.0.48" />
+    <PackageReference Include="Syncfusion.Xamarin.SfPullToRefresh" Version="20.2.0.48" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2515" />
+    <PackageReference Include="Xamarin.Essentials" Version="1.7.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Views\NewItemPage.xaml.cs">
+      <DependentUpon>NewItemPage.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Views\NewItemPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\SettingsPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
   </ItemGroup>
 </Project>

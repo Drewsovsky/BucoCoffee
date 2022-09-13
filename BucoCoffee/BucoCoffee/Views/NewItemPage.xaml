@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BucoCoffee.Views.NewItemPage"
+             xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms" xmlns:local="clr-namespace:BucoCoffee.Models"
+             Title="BucoCoffee Item">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout
+                Padding="0,18,0,0">
+                    <Frame
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    CornerRadius="18"
+                    BackgroundColor="LightGray">
+                        <Label
+                        Text="icon"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout
+                Padding="18">
+                    <inputLayout:SfTextInputLayout 
+                        Padding="0,0,0,14"
+                        Hint="Тип продукту">
+                        <combobox:SfComboBox
+                            SelectedItem="{Binding SelectedProductType}"
+                            DisplayMemberPath="Title"
+                            DataSource="{Binding ProductTypesList}">
+                            <combobox:SfComboBox.ItemTemplate>
+                                <DataTemplate
+                                    x:DataType="local:ProductType">
+                                    <StackLayout
+                                        BackgroundColor="{Binding ThemeColor}"
+                                        Orientation="Horizontal">
+                                        <Label
+                                            Text="{Binding Title}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </combobox:SfComboBox.ItemTemplate>
+                        </combobox:SfComboBox>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout 
+                    Hint="Фасувальник">
+                        <Entry 
+                            Text="{Binding Packer}"/>
+                    </inputLayout:SfTextInputLayout>
+
+                    <StackLayout
+                    Orientation="Horizontal">
+
+                        <inputLayout:SfTextInputLayout 
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Дата фасування" 
+                        HelperText="Оберіть дату">
+                            <DatePicker 
+                                Date="{Binding PackingDate}"/>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout 
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Дата на упаковці" 
+                        HelperText="Оберіть дату">
+                            <DatePicker 
+                                Date="{Binding PackageDate}"/>
+                        </inputLayout:SfTextInputLayout>
+                    </StackLayout>
+
+                    <Grid>
+                        <inputLayout:SfTextInputLayout
+                        Grid.Column="0"
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Кількість упаковок"
+                        HelperText="шт.">
+                            <numeric:SfNumericUpDown 
+                            x:Name="numericUpDown" 
+                                Minimum="0"
+                                Maximum="{Binding MAX_AMOUNT}"
+                            Value="{Binding PackageAmount}"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Вага"
+                        HelperText="кг.">
+                            <numeric:SfNumericUpDown 
+                            x:Name="numericUpDowna" 
+                                Minimum="0"
+                                Maximum="{Binding MAX_WEIGHT}"
+                            Value="{Binding PackageWeight}"/>
+                        </inputLayout:SfTextInputLayout>
+                    </Grid>
+                    <inputLayout:SfTextInputLayout
+                    Hint="Коментар">
+                        <Editor 
+                            AutoSize="TextChanges" 
+                            Text="{Binding Comment}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <Button
+                        Text="add"
+                        Command="{Binding AddProductItemCommand}"/>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
