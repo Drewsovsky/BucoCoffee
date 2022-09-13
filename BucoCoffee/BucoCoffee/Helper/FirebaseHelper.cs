@@ -84,12 +84,20 @@ namespace BucoCoffee.Helper
             await _firebase.Child(TableProductType).Child(toDeleteProductType.Key).DeleteAsync();
         }
 
+        private ProductType GetProductType(List<ProductType> list, Guid productTypeId)
+        {
+            var  a = list.FirstOrDefault(item => item.Id == productTypeId);
+            return a;
+        }
+
         #endregion
 
         #region TableProductItem
 
         public async Task<List<ProductItem>> GetAllProductItems()
         {
+            var typeList = await GetAllProductTypes();
+
             return (await _firebase
                 .Child(TableProductItem)
                 .OnceAsync<ProductItem>()).Select(item => new ProductItem
@@ -101,7 +109,8 @@ namespace BucoCoffee.Helper
                     PackingDate = item.Object.PackingDate,
                     PackageAmount = item.Object.PackageAmount,
                     PackerName = item.Object.PackerName,
-                    Weight = item.Object.Weight
+                    Weight = item.Object.Weight,
+                    ProductKeyType = GetProductType(typeList, item.Object.SelectedProductTypeId)
                 }).ToList();
         }
 

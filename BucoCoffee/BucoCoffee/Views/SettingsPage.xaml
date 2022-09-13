@@ -17,7 +17,8 @@
                     HorizontalOptions="FillAndExpand"
                     Hint="Назва"
                     HelperText="Тип продукту">
-                    <Entry/>
+                    <Entry
+                        Text="{Binding TypeTitle}"/>
                 </inputLayout:SfTextInputLayout>
                 <StackLayout
                     Grid.Column="1">
