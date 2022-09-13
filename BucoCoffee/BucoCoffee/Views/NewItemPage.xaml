@@ -3,35 +3,110 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BucoCoffee.Views.NewItemPage"
              xmlns:ListCollection="clr-namespace:System.Collections.Generic;assembly=netstandard"
-             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms">
+             xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
+             Title="BucoCoffee Item">
     <ContentPage.Content>
-        <StackLayout
-            Padding="18">
-            <combobox:SfComboBox  x:Name="comboBox">
-                <combobox:SfComboBox.ComboBoxSource>
-                    <ListCollection:List x:TypeArguments="x:String">
-                        <x:String>1920 x 1080</x:String>
-                        <x:String>1680 x 1050</x:String>
-                        <x:String>1600 x 900</x:String>
-                        <x:String>1440 x 900</x:String>
-                        <x:String>1400 x 1050</x:String>
-                        <x:String>1366 x 768</x:String>
-                        <x:String>1360 x 768</x:String>
-                        <x:String>1280 x 1024</x:String>
-                        <x:String>1280 x 960</x:String>
-                        <x:String>1280 x 720</x:String>
-                        <x:String>854 x 480</x:String>
-                        <x:String>800 x 480</x:String>
-                        <x:String>480 X 640</x:String>
-                        <x:String>480 x 320</x:String>
-                        <x:String>432 x 240</x:String>
-                        <x:String>360 X 640</x:String>
-                        <x:String>320 x 240</x:String>
-                    </ListCollection:List>
-                </combobox:SfComboBox.ComboBoxSource>
-            </combobox:SfComboBox>
-        </StackLayout>
-        
+        <ScrollView>
+            <StackLayout>
+                <StackLayout
+                Padding="0,18,0,0">
+                    <Frame
+                    HorizontalOptions="CenterAndExpand"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    CornerRadius="18"
+                    BackgroundColor="LightGray">
+                        <Label
+                        Text="icon"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout
+                Padding="18">
+                    <inputLayout:SfTextInputLayout 
+                    Padding="0,0,0,14"
+                    Hint="Тип продукту">
+                        <combobox:SfComboBox>
+                            <combobox:SfComboBox.ComboBoxSource>
+                                <ListCollection:List x:TypeArguments="x:String">
+                                    <x:String>1920 x 1080</x:String>
+                                    <x:String>1680 x 1050</x:String>
+                                    <x:String>1600 x 900</x:String>
+                                    <x:String>1440 x 900</x:String>
+                                    <x:String>1400 x 1050</x:String>
+                                    <x:String>1366 x 768</x:String>
+                                    <x:String>1360 x 768</x:String>
+                                    <x:String>1280 x 1024</x:String>
+                                    <x:String>1280 x 960</x:String>
+                                    <x:String>1280 x 720</x:String>
+                                    <x:String>854 x 480</x:String>
+                                    <x:String>800 x 480</x:String>
+                                    <x:String>480 X 640</x:String>
+                                    <x:String>480 x 320</x:String>
+                                    <x:String>432 x 240</x:String>
+                                    <x:String>360 X 640</x:String>
+                                    <x:String>320 x 240</x:String>
+                                </ListCollection:List>
+                            </combobox:SfComboBox.ComboBoxSource>
+                        </combobox:SfComboBox>
+                    </inputLayout:SfTextInputLayout>
+                    <inputLayout:SfTextInputLayout 
+                    Hint="Фасувальник">
+                        <Entry />
+                    </inputLayout:SfTextInputLayout>
+
+                    <StackLayout
+                    Orientation="Horizontal">
+
+                        <inputLayout:SfTextInputLayout 
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Дата фасування" 
+                        HelperText="Оберіть дату">
+                            <DatePicker 
+                            MinimumDate="01/01/2019"
+                            MaximumDate="12/31/2019" 
+                            Date="11/12/2019"/>
+                        </inputLayout:SfTextInputLayout>
+
+                        <inputLayout:SfTextInputLayout 
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Дата на упаковці" 
+                        HelperText="Оберіть дату">
+                            <DatePicker 
+                            MinimumDate="01/01/2019"
+                            MaximumDate="12/31/2019" 
+                            Date="11/12/2019"/>
+                        </inputLayout:SfTextInputLayout>
+                    </StackLayout>
+
+                    <Grid>
+                        <inputLayout:SfTextInputLayout
+                        Grid.Column="0"
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Кількість упаковок"
+                        HelperText="шт.">
+                            <numeric:SfNumericUpDown 
+                            x:Name="numericUpDown" 
+                            Value="0"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                        Grid.Column="1"
+                        HorizontalOptions="FillAndExpand"
+                        Hint="Вага"
+                        HelperText="кг.">
+                            <numeric:SfNumericUpDown 
+                            x:Name="numericUpDowna" 
+                            Value="0"/>
+                        </inputLayout:SfTextInputLayout>
+                    </Grid>
+                    <inputLayout:SfTextInputLayout
+                    Hint="Коментар">
+                        <Editor AutoSize="TextChanges" />
+                    </inputLayout:SfTextInputLayout>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
         
         
         

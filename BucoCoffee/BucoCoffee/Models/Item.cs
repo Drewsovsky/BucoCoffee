@@ -3,7 +3,7 @@
     public class Item
     {
         public int Id { get; set; }
-        public Key SelectedKey { get; set; }
+        public ProductType SelectedProductType { get; set; }
         public string PackingDate { get; set; } // DateTime
         public string PackageDate { get; set; } // DateTime
         public string PackerName { get; set; }
