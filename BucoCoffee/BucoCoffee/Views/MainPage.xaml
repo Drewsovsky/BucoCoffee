@@ -47,7 +47,14 @@
                     Style="{StaticResource CustomButton}"
                     Text="{Binding SelectedDate}"
                     FontAttributes="Bold"
-                    x:Name="SfButtonCalendar" />
+                    x:Name="SfButtonCalendar" 
+                    Clicked="SfButtonCalendar_Clicked"/>
+                <DatePicker
+                    x:Name="dummyDatePicker"
+                    Date="{Binding SelectedDate}"
+                    Grid.Column="1"
+                    HeightRequest="1"
+                    Opacity="0"/>
                 <buttons:SfButton
                     Grid.Column="2"
                     Style="{StaticResource CustomButton}"
