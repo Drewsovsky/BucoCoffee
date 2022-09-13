@@ -28,7 +28,7 @@
                 <buttons:SfButton
                     Grid.Column="0"
                     Style="{StaticResource CustomButton}"
-                    Command="{Binding AddProductTypeCommand}"
+                    Command="{Binding PastDateCommand}"
                     ImageSource="left_arrow"
                     ShowIcon="True"
                     VerticalOptions="FillAndExpand"
@@ -45,14 +45,13 @@
                 <buttons:SfButton
                     Grid.Column="1"
                     Style="{StaticResource CustomButton}"
-                    Command="{Binding AddProductTypeCommand}"
-                    Text="01/01/0000"
+                    Text="{Binding SelectedDate}"
                     FontAttributes="Bold"
                     x:Name="SfButtonCalendar" />
                 <buttons:SfButton
                     Grid.Column="2"
                     Style="{StaticResource CustomButton}"
-                    Command="{Binding AddProductTypeCommand}"
+                    Command="{Binding FutureDateCommand}"
                     ImageSource="left_arrow"
                     ShowIcon="True"
                     VerticalOptions="FillAndExpand"
