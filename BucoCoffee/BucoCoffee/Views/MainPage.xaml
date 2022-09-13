@@ -56,7 +56,7 @@
                     ImageSource="left_arrow"
                     ShowIcon="True"
                     VerticalOptions="FillAndExpand"
-                    x:Name="SfButtonLeft">
+                    x:Name="SfButtonRight">
                     <buttons:SfButton.Content>
                         <StackLayout
                             VerticalOptions="CenterAndExpand">
