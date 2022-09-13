@@ -2,12 +2,46 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BucoCoffee.Views.SettingsPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+             xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
              Title="Settings">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <Grid
+                Padding="18">
+                <inputLayout:SfTextInputLayout 
+                    ContainerType="None"
+                    Grid.Column="0"
+                    HorizontalOptions="FillAndExpand"
+                    Hint="Назва"
+                    HelperText="Тип продукту">
+                    <Entry/>
+                </inputLayout:SfTextInputLayout>
+                <StackLayout
+                    Grid.Column="1">
+                    <Frame
+                        CornerRadius="18"
+                        HorizontalOptions="CenterAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        HeightRequest="20"
+                        WidthRequest="20"
+                        BackgroundColor="Orange"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="2">
+                    <buttons:SfButton 
+                        VerticalOptions="CenterAndExpand"
+                        Text="Додати"
+                        IsEnabled="False"
+                        x:Name="SfButton"/>
+                </StackLayout>
+            </Grid>
+            <syncfusion:SfListView 
+                HeightRequest="300"
+                x:Name="listView" 
+                BackgroundColor="red"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
