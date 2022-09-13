@@ -1,8 +1,10 @@
-﻿namespace BucoCoffee.Models
+﻿using System;
+
+namespace BucoCoffee.Models
 {
     public class Item
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public ProductType SelectedProductType { get; set; }
         public string PackingDate { get; set; } // DateTime
         public string PackageDate { get; set; } // DateTime

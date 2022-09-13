@@ -32,9 +32,9 @@
                 <StackLayout
                     Grid.Column="2">
                     <buttons:SfButton 
+                        Command="{Binding AddProductTypeCommand}"
                         VerticalOptions="CenterAndExpand"
                         Text="Додати"
-                        IsEnabled="False"
                         x:Name="SfButton"/>
                 </StackLayout>
             </Grid>
