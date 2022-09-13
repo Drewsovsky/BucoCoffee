@@ -8,6 +8,7 @@ namespace BucoCoffee.ViewModels
     public class SettingsPageViewModel : BaseViewModel
     {
         public ObservableCollection<ProductType> ProductTypesList { get; set; }
+        public string TypeTitle { get; set; }
 
         public ICommand AddProductTypeCommand => new Command(AddProductType);
 
@@ -26,7 +27,7 @@ namespace BucoCoffee.ViewModels
 
         private async void AddProductType()
         {
-            await _firebaseHelper.AddProductType("test","#ff0000");
+            await _firebaseHelper.AddProductType(TypeTitle, "#32a852");
         }
     }
 }
