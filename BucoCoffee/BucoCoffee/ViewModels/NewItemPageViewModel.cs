@@ -8,10 +8,24 @@ namespace BucoCoffee.ViewModels
 {
     public class NewItemPageViewModel : BaseViewModel
     {
+        public const int MAX_WEIGHT = 1_000_000;
+        public const double MAX_AMOUNT = 1_000_000.0f;
+
         public ObservableCollection<ProductType> ProductTypesList { get; set; }
         public string Packer { get; set; }
-        public string PackingDate { get; set; }
-        public string PackageDate { get; set; }
+
+        private string _packingDate;
+        public string PackingDate { 
+            get { return _packingDate; } 
+            set { _packingDate = DateTime.Parse(value).ToShortDateString(); } 
+        }
+
+        private string _packageDate;
+        public string PackageDate
+        {
+            get { return _packageDate; }
+            set { _packageDate = DateTime.Parse(value).ToShortDateString(); }
+        }
         public int PackageAmount { get; set; }
         public double PackageWeight { get; set; }
         public string Comment { get; set; }
@@ -28,6 +42,9 @@ namespace BucoCoffee.ViewModels
         public NewItemPageViewModel(INavigation navigation)
         {
             Navigation = navigation;
+
+            PackingDate = DateTime.UtcNow.ToString();
+            PackageDate = DateTime.UtcNow.ToString();
         }
 
         public async override void OnAppearing()
@@ -54,6 +71,7 @@ namespace BucoCoffee.ViewModels
             }
             else
             {
+                // TODO: Errors
                 var a = 1;
             }
         }
