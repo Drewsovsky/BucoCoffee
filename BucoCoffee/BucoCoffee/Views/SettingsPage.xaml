@@ -6,81 +6,94 @@
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
     x:Class="BucoCoffee.Views.SettingsPage"
     Title="Settings">
     <ContentPage.Content>
-        <StackLayout
-            BackgroundColor="{StaticResource GhostWhite}">
-            <Grid
-                Padding="18">
-                <inputLayout:SfTextInputLayout
-                    Style="{StaticResource CustomTextInputLayout}"
-                    Grid.Column="0"
-                    Hint="Назва"
-                    HelperText="Тип продукту">
-                    <Entry
-                        Text="{Binding TypeTitle}" />
-                </inputLayout:SfTextInputLayout>
-                <StackLayout
-                    Grid.Column="1">
-                    <Frame
-                        CornerRadius="18"
-                        HorizontalOptions="CenterAndExpand"
-                        VerticalOptions="CenterAndExpand"
-                        HeightRequest="20"
-                        WidthRequest="20"
-                        BackgroundColor="Orange" />
-                </StackLayout>
-                <StackLayout
-                    Grid.Column="2">
-                    <buttons:SfButton
-                        Style="{StaticResource CustomButton}"                        
-                        Command="{Binding AddProductTypeCommand}"
-                        Text="Додати"
-                        x:Name="SfButton" />
-                </StackLayout>
-            </Grid>
+        <ScrollView>
             <StackLayout
-                Spacing="0">
-                <BoxView
-                    HeightRequest="1"
-                    BackgroundColor="{StaticResource QuickSilver}" />
-                <syncfusion:SfListView
-                    HeightRequest="300"
-                    AutoFitMode="DynamicHeight"
-                    x:Name="listView"
-                    SelectionMode="None"
-                    ItemsSource="{Binding ProductTypesList}">
-                    <syncfusion:SfListView.ItemTemplate>
-                        <DataTemplate
-                            x:DataType="local:ProductType">
-                            <StackLayout
-                                Padding="16,8">
-                                <Frame
-                                    BackgroundColor="{StaticResource LightGray}"
-                                    Padding="12"
-                                    CornerRadius="16">
-                                    <StackLayout
-                                        Orientation="Horizontal">
-                                        <Frame
-                                            CornerRadius="16"
-                                            Padding="8"
-                                            BackgroundColor="{Binding ThemeColor}">
-                                            <Label
-                                                FontAttributes="Bold"
-                                                FontSize="24"
-                                                Text="{Binding Title}" />
-                                        </Frame>
-                                    </StackLayout>
-                                </Frame>
-                            </StackLayout>
-                        </DataTemplate>
-                    </syncfusion:SfListView.ItemTemplate>
-                </syncfusion:SfListView>
-                <BoxView
-                    HeightRequest="1"
-                    BackgroundColor="{StaticResource QuickSilver}" />
+                BackgroundColor="{StaticResource GhostWhite}">
+                <Grid
+                    Padding="18,18,18,9">
+                    <inputLayout:SfTextInputLayout
+                        Style="{StaticResource CustomTextInputLayout}"
+                        Grid.Column="0"
+                        Hint="Назва"
+                        HelperText="Тип продукту">
+                        <Entry
+                            Text="{Binding TypeTitle}" />
+                    </inputLayout:SfTextInputLayout>
+                    <StackLayout
+                        Grid.Column="1">
+                        <Frame
+                            x:Name="selectedColor"
+                            BorderColor="{StaticResource Secondary}"
+                            CornerRadius="18"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            HeightRequest="20"
+                            WidthRequest="20"
+                            BackgroundColor="{Binding SelectedColor}" />
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="2">
+                        <buttons:SfButton
+                            Style="{StaticResource CustomButton}"
+                            Command="{Binding AddProductTypeCommand}"
+                            Text="Додати"
+                            x:Name="SfButton" />
+                    </StackLayout>
+                </Grid>
+
+                <colorpicker:HSLSliders
+                    Margin="0,0,0,10"
+                    SelectedColorChanged="HSLSliders_SelectedColorChanged"
+                    SelectedColor="{Binding SelectedColor}"
+                    HeightRequest="80"
+                    ShowAlphaSlider="False" />
+
+                <StackLayout
+                    Spacing="0">
+                    <BoxView
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource QuickSilver}" />
+                    <syncfusion:SfListView
+                        HeightRequest="300"
+                        AutoFitMode="DynamicHeight"
+                        x:Name="listView"
+                        SelectionMode="None"
+                        ItemsSource="{Binding ProductTypesList}">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate
+                                x:DataType="local:ProductType">
+                                <StackLayout
+                                    Padding="16,8">
+                                    <Frame
+                                        BackgroundColor="{StaticResource LightGray}"
+                                        Padding="12"
+                                        CornerRadius="16">
+                                        <StackLayout
+                                            Orientation="Horizontal">
+                                            <Frame
+                                                CornerRadius="16"
+                                                Padding="8"
+                                                BackgroundColor="{Binding ThemeColor}">
+                                                <Label
+                                                    FontAttributes="Bold"
+                                                    FontSize="24"
+                                                    Text="{Binding Title}" />
+                                            </Frame>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
+                    </syncfusion:SfListView>
+                    <BoxView
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource QuickSilver}" />
+                </StackLayout>
             </StackLayout>
-        </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

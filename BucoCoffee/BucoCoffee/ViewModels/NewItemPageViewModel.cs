@@ -44,8 +44,8 @@ namespace BucoCoffee.ViewModels
         {
             Navigation = navigation;
 
-            PackingDate = DateTime.UtcNow.ToString();
-            PackageDate = DateTime.UtcNow.ToString();
+            PackingDate = DateTime.Now.ToString();
+            PackageDate = DateTime.Now.ToString();
         }
 
         public async override void OnAppearing()
