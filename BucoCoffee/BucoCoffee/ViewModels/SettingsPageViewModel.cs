@@ -1,6 +1,7 @@
 ﻿using BucoCoffee.Models;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -44,6 +45,10 @@ namespace BucoCoffee.ViewModels
         private async void AddProductType()
         {
             await _firebaseHelper.AddProductType(TypeTitle, HexConverter(SelectedColor));
+
+            ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
+
+            OnPropertyChanged(nameof(ProductTypesList));
         }
 
         private static String HexConverter(System.Drawing.Color c)
