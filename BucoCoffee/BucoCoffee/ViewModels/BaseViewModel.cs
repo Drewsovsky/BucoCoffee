@@ -1,4 +1,5 @@
 ﻿using BucoCoffee.Helper;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -20,5 +21,11 @@ namespace BucoCoffee.ViewModels
             if (handler != null)
                 handler(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public virtual void OnAppearing() { }
+        public virtual void OnDisappearing() { }
+
+        //public virtual void OnAppearing(Page sender, EventArgs eventArgs) { }
+        //public virtual void OnDisappearing(Page sender, EventArgs eventArgs) { }
     }
 }

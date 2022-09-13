@@ -13,5 +13,12 @@ namespace BucoCoffee.Views
 
             BindingContext = new SettingsPageViewModel(Navigation);
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            (BindingContext as SettingsPageViewModel).OnAppearing();
+        }
     }
 }
