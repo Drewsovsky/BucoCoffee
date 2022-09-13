@@ -23,6 +23,7 @@ namespace BucoCoffee.Helper
                 .Child(TableProductType)
                 .OnceAsync<ProductType>()).Select(item => new ProductType
                 {
+                    Id = item.Object.Id,
                     Title = item.Object.Title,
                     ThemeColor = item.Object.ThemeColor
                 }).ToList();
@@ -93,6 +94,7 @@ namespace BucoCoffee.Helper
                 .Child(TableProductItem)
                 .OnceAsync<ProductItem>()).Select(item => new ProductItem
                 {
+                    Id = item.Object.Id,
                     SelectedProductTypeId = item.Object.SelectedProductTypeId,
                     Comment = item.Object.Comment,
                     PackageDate = item.Object.PackageDate,

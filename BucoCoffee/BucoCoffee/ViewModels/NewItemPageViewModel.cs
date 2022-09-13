@@ -29,6 +29,7 @@ namespace BucoCoffee.ViewModels
         public int PackageAmount { get; set; }
         public double PackageWeight { get; set; }
         public string Comment { get; set; }
+
         private ProductType _selectedProductType;
 
         public ProductType SelectedProductType
@@ -72,7 +73,6 @@ namespace BucoCoffee.ViewModels
             else
             {
                 // TODO: Errors
-                var a = 1;
             }
         }
     }
