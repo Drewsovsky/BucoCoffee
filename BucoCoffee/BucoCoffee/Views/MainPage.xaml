@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BucoCoffee.MainPage"
+             xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms" xmlns:local="clr-namespace:BucoCoffee.Models"
              Title="BucoCoffee">
     <ContentPage.ToolbarItems>
         <ToolbarItem
@@ -14,8 +15,31 @@
             Command="{Binding GotoSettingsPageCommand}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            
+        <StackLayout
+            BackgroundColor="Green">
+            <StackLayout
+                BackgroundColor="Purple"
+                HeightRequest="30">
+                <Label
+                    Text="123"/>
+            </StackLayout>
+            <syncfusion:SfListView
+                ItemSpacing="6"
+                BackgroundColor="DarkCyan"
+                ItemsSource="{Binding ProductItemsList}">
+                <syncfusion:SfListView.ItemTemplate>
+                    <DataTemplate
+                        x:DataType="local:ProductItem">
+                        <StackLayout
+                            Orientation="Horizontal"
+                            BackgroundColor="YellowGreen">
+                            <Label
+                                BackgroundColor="{Binding ProductKeyType.ThemeColor}"
+                                Text="{Binding ProductKeyType.Title}"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </syncfusion:SfListView.ItemTemplate>
+            </syncfusion:SfListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

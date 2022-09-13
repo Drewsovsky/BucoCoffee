@@ -13,5 +13,6 @@ namespace BucoCoffee.Models
         public double Weight { get; set; }
         public string Comment { get; set; }
 
+        public ProductType ProductKeyType { get; set; }
     }
 }
