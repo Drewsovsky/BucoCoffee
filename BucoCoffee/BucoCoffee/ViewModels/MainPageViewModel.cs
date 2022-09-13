@@ -34,7 +34,7 @@ namespace BucoCoffee.ViewModels
 
         public async void Init()
         {
-            SelectedDate = DateTime.UtcNow.ToString();
+            SelectedDate = DateTime.Now.ToString();
             ProductItemsList = new ObservableCollection<ProductItem>(await _firebaseHelper.GetAllProductItems());
 
             OnPropertyChanged(nameof(ProductItemsList));
