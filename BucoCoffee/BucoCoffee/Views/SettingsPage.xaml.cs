@@ -20,5 +20,10 @@ namespace BucoCoffee.Views
 
             (BindingContext as SettingsPageViewModel).OnAppearing();
         }
+
+        private void HSLSliders_SelectedColorChanged(object sender, ColorPicker.BaseClasses.ColorPickerEventArgs.ColorChangedEventArgs e)
+        {
+            (BindingContext as SettingsPageViewModel).SelectedColor = e.NewColor;
+        }
     }
 }
