@@ -28,6 +28,7 @@
                         Padding="0,0,0,14"
                         Hint="Тип продукту">
                         <combobox:SfComboBox
+                            SelectedItem="{Binding SelectedProductType}"
                             DisplayMemberPath="Title"
                             DataSource="{Binding ProductTypesList}">
                             <combobox:SfComboBox.ItemTemplate>
@@ -45,7 +46,8 @@
                     </inputLayout:SfTextInputLayout>
                     <inputLayout:SfTextInputLayout 
                     Hint="Фасувальник">
-                        <Entry />
+                        <Entry 
+                            Text="{Binding Packer}"/>
                     </inputLayout:SfTextInputLayout>
 
                     <StackLayout
@@ -58,7 +60,7 @@
                             <DatePicker 
                             MinimumDate="01/01/2019"
                             MaximumDate="12/31/2019" 
-                            Date="11/12/2019"/>
+                            Date="{Binding PackingDate}"/>
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout 
@@ -68,7 +70,7 @@
                             <DatePicker 
                             MinimumDate="01/01/2019"
                             MaximumDate="12/31/2019" 
-                            Date="11/12/2019"/>
+                            Date="{Binding PackageDate}"/>
                         </inputLayout:SfTextInputLayout>
                     </StackLayout>
 
@@ -80,7 +82,8 @@
                         HelperText="шт.">
                             <numeric:SfNumericUpDown 
                             x:Name="numericUpDown" 
-                            Value="0"/>
+                                Minimum="0"
+                            Value="{Binding PackageAmount}"/>
                         </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout
                         Grid.Column="1"
@@ -89,13 +92,19 @@
                         HelperText="кг.">
                             <numeric:SfNumericUpDown 
                             x:Name="numericUpDowna" 
-                            Value="0"/>
+                                Minimum="0"
+                            Value="{Binding PackageWeight}"/>
                         </inputLayout:SfTextInputLayout>
                     </Grid>
                     <inputLayout:SfTextInputLayout
                     Hint="Коментар">
-                        <Editor AutoSize="TextChanges" />
+                        <Editor 
+                            AutoSize="TextChanges" 
+                            Text="{Binding Comment}"/>
                     </inputLayout:SfTextInputLayout>
+                    <Button
+                        Text="add"
+                        Command="{Binding AddProductItemCommand}"/>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

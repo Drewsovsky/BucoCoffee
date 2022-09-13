@@ -103,7 +103,7 @@ namespace BucoCoffee.Helper
                 }).ToList();
         }
 
-        public async Task AddProductItem(string productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
+        public async Task AddProductItem(Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
         {
             await _firebase
                 .Child(TableProductItem)
@@ -129,7 +129,7 @@ namespace BucoCoffee.Helper
             return allProductItems.FirstOrDefault(item => item.Id == productId);
         }
 
-        public async Task UpdateProductitem(Guid productItemId, string productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
+        public async Task UpdateProductitem(Guid productItemId, Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
         {
             var toUpdateProductitem = (await _firebase
                 .Child(TableProductItem)
