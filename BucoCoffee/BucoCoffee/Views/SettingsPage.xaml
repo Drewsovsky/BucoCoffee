@@ -3,10 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BucoCoffee.Models"
+    xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
     xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
-    xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
     x:Class="BucoCoffee.Views.SettingsPage"
     Title="Налаштування">
     <ContentPage.Content>
