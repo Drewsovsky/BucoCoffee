@@ -77,33 +77,41 @@
                 HeightRequest="1"
                 BackgroundColor="{StaticResource QuickSilver}" />
             <syncfusion:SfListView
+                Padding="8,0"
+                ItemSpacing="8"
                 AutoFitMode="DynamicHeight"
                 ItemsSource="{Binding Products}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate
                         x:DataType="local:ProductItem">
-                        <StackLayout
-                            Padding="16,8">
+                        <StackLayout>
                             <Frame
-                                BackgroundColor="{StaticResource LightGray}"
+                                BackgroundColor="{StaticResource Secondary}"
                                 Padding="12"
                                 CornerRadius="16">
                                 <StackLayout
                                     Orientation="Horizontal">
                                     <Frame
                                         CornerRadius="16"
-                                        Padding="8"
+                                        Padding="8,24"
                                         BackgroundColor="{Binding ProductKeyType.ThemeColor}">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="24"
-                                            Text="{Binding ProductKeyType.Title}" />
                                     </Frame>
+                                    <Label
+                                        VerticalOptions="Center"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource GhostWhite}"
+                                        FontSize="24"
+                                        Text="{Binding ProductKeyType.Title}"
+                                        LineBreakMode="TailTruncation" />
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout
+                        SpanCount="2" />
+                </syncfusion:SfListView.LayoutManager>
             </syncfusion:SfListView>
         </StackLayout>
     </ContentPage.Content>
