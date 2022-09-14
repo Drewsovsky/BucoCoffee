@@ -27,9 +27,9 @@
                 </StackLayout>
                 <StackLayout
                     Padding="18,0">
-                    <StackLayout
-                        Orientation="Horizontal">
+                    <Grid>
                         <inputLayout:SfTextInputLayout
+                            Grid.Column="0"
                             Style="{StaticResource CustomTextInputLayout}"
                             Hint="Тип продукту">
                             <combobox:SfComboBox
@@ -50,6 +50,7 @@
                             </combobox:SfComboBox>
                         </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout
+                            Grid.Column="1"
                             Style="{StaticResource CustomTextInputLayout}"
                             Hint="Тип фасування">
                             <combobox:SfComboBox
@@ -65,7 +66,7 @@
                                 </combobox:SfComboBox.ItemTemplate>
                             </combobox:SfComboBox>
                         </inputLayout:SfTextInputLayout>
-                    </StackLayout>
+                    </Grid>
                     <inputLayout:SfTextInputLayout
                         Style="{StaticResource CustomTextInputLayout}"
                         Hint="Фасувальник">
