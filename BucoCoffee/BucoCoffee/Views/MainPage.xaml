@@ -117,9 +117,16 @@
                                             Grid.Column="1">
                                             <Label
                                                 LineBreakMode="TailTruncation"
-                                                TextColor="{StaticResource Secondary}"
-                                                BackgroundColor="Red"
-                                                Text="Тип фасування: GOLD" />
+                                                TextColor="{StaticResource Secondary}" >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Тип фасування: " />
+                                                        <Span
+                                                            Text="{Binding PackingKeyType.Name}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                             <Label
                                                 LineBreakMode="TailTruncation"
                                                 TextColor="{StaticResource Secondary}">
@@ -145,12 +152,51 @@
                                                 </Label.FormattedText>
                                             </Label>
                                             <Label
+                                                IsVisible="False"
                                                 LineBreakMode="TailTruncation"
-                                                TextColor="{StaticResource Secondary}"
-                                                BackgroundColor="red"
-                                                Text="Вага: Weight KG" />
-                                            <!--<Label
-                                                Text="Кількість: Weight KG" />-->
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Кількість: " />
+                                                        <Span
+                                                            Text="{Binding PackageAmount}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="Label"
+                                                        Binding="{Binding ParameterAmountOrWeight}"
+                                                        Value="True">
+                                                        <Setter
+                                                            Property="IsVisible"
+                                                            Value="True" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <Label
+                                                IsVisible="False"
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Вага: " />
+                                                        <Span
+                                                            Text="{Binding Weight}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="Label"
+                                                        Binding="{Binding ParameterAmountOrWeight}"
+                                                        Value="False">
+                                                        <Setter
+                                                            Property="IsVisible"
+                                                            Value="True" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
                                         </StackLayout>
                                     </Grid>
                                 </StackLayout>

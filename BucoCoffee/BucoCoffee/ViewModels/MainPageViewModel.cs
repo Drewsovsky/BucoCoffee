@@ -45,8 +45,6 @@ namespace BucoCoffee.ViewModels
         {
             ProductItemsList = new ObservableCollection<ProductItem>(await _firebaseHelper.GetAllProductItems());
             SelectedDate = DateTime.Now.ToString();
-
-            // OnPropertyChanged(nameof(ProductItemsList));
         }
 
         async private void GotoNewItemPage()

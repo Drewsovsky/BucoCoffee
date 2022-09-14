@@ -16,5 +16,10 @@ namespace BucoCoffee.Models
 
         public ProductType ProductKeyType { get; set; }
         public PackingType PackingKeyType { get; set; }
+
+        /// <summary>
+        /// If product using Weight, value equals false, if using Amount - true
+        /// </summary>
+        public bool ParameterAmountOrWeight { get; set; }
     }
 }

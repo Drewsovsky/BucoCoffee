@@ -97,6 +97,7 @@ namespace BucoCoffee.Helper
         public async Task<List<ProductItem>> GetAllProductItems()
         {
             var typeList = await GetAllProductTypes();
+            var packingType = await GetAllPackingTypes();
 
             return (await _firebase
                 .Child(TableProductItem)
@@ -104,13 +105,16 @@ namespace BucoCoffee.Helper
                 {
                     Id = item.Object.Id,
                     SelectedProductTypeId = item.Object.SelectedProductTypeId,
+                    SelectedPackingTypeId = item.Object.SelectedPackingTypeId,
                     Comment = item.Object.Comment,
                     PackageDate = item.Object.PackageDate,
                     PackingDate = item.Object.PackingDate,
                     PackageAmount = item.Object.PackageAmount,
                     PackerName = item.Object.PackerName,
                     Weight = item.Object.Weight,
-                    ProductKeyType = GetProductType(typeList, item.Object.SelectedProductTypeId)
+                    ProductKeyType = GetProductType(typeList, item.Object.SelectedProductTypeId),
+                    PackingKeyType = GetPackingType(packingType, item.Object.SelectedPackingTypeId),
+                    ParameterAmountOrWeight = item.Object.PackageAmount != 0
                 }).ToList();
         }
 
