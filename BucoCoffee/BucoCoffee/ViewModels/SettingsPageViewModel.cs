@@ -11,6 +11,7 @@ namespace BucoCoffee.ViewModels
         private Random random = new Random();
 
         public ObservableCollection<ProductType> ProductTypesList { get; set; }
+        public ObservableCollection<PackingType> PackingTypesList { get; set; }
 
         private string _typeTitle;
         public string TypeTitle
@@ -33,7 +34,29 @@ namespace BucoCoffee.ViewModels
                 OnPropertyChanged(nameof(IsTypeTitleEmpty));
             }
         }
-        
+
+        private string _packingTypeTitle;
+
+        public string PackingTypeTitle
+        {
+            get { return _packingTypeTitle; }
+            set { 
+                _packingTypeTitle = value;
+
+                if (IsPackingTypeAdded)
+                {
+                    IsPackingTypeEmpty = false;
+                    IsPackingTypeAdded = false;
+                }
+                else
+                {
+                    IsPackingTypeEmpty = string.IsNullOrWhiteSpace(_packingTypeTitle);
+                }
+
+                OnPropertyChanged(nameof(IsPackingTypeEmpty));
+            }
+        }
+
         private Color _selectedColor;
         public Color SelectedColor {
             get { return _selectedColor; }
@@ -44,9 +67,12 @@ namespace BucoCoffee.ViewModels
             }
         }
         public bool IsTypeTitleEmpty { get; set; } = false;
+        public bool IsPackingTypeEmpty { get; set; } = false;
         private bool IsProductTypeAdded { get; set; }
+        private bool IsPackingTypeAdded { get; set; }
 
         public ICommand AddProductTypeCommand => new Command(AddProductType);
+        public ICommand AddPackingTypeCommand => new Command(AddPackingType);
 
         public SettingsPageViewModel(INavigation navigation)
         {
@@ -59,7 +85,9 @@ namespace BucoCoffee.ViewModels
 
             SelectedColor = Color.FromRgb(random.Next(256), random.Next(256), random.Next(256));
             ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
+            PackingTypesList = new ObservableCollection<PackingType>(await _firebaseHelper.GetAllPackingTypes());
 
+            OnPropertyChanged(nameof(PackingTypesList));
             OnPropertyChanged(nameof(ProductTypesList));
             OnPropertyChanged(nameof(SelectedColor));
         }
@@ -86,6 +114,30 @@ namespace BucoCoffee.ViewModels
             OnPropertyChanged(nameof(IsTypeTitleEmpty));
             OnPropertyChanged(nameof(TypeTitle));
             OnPropertyChanged(nameof(ProductTypesList));
+        }
+
+        private async void AddPackingType()
+        {
+            IsPackingTypeEmpty = false;
+
+            if (string.IsNullOrWhiteSpace(PackingTypeTitle))
+            {
+                IsPackingTypeEmpty = true;
+            }
+            else
+            {
+                IsPackingTypeEmpty = false;
+
+                await _firebaseHelper.AddPackingType(PackingTypeTitle);
+
+                PackingTypesList = new ObservableCollection<PackingType>(await _firebaseHelper.GetAllPackingTypes());
+                PackingTypeTitle = String.Empty;
+                IsPackingTypeAdded = true;
+            }
+
+            OnPropertyChanged(nameof(IsPackingTypeEmpty));
+            OnPropertyChanged(nameof(PackingTypeTitle));
+            OnPropertyChanged(nameof(PackingTypesList));
         }
 
         private static String HexConverter(System.Drawing.Color c)

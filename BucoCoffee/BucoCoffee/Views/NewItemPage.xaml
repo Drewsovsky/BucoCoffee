@@ -3,13 +3,15 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:BucoCoffee.Models"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
     xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     x:Class="BucoCoffee.Views.NewItemPage"
     Title="BucoCoffee">
     <ContentPage.Content>
-        <ScrollView>
+        <ScrollView
+            BackgroundColor="{StaticResource GhostWhite}">
             <StackLayout>
                 <StackLayout
                     Padding="0,18,0,0">
@@ -24,9 +26,10 @@
                     </Frame>
                 </StackLayout>
                 <StackLayout
-                    Padding="18">
+                    Padding="18,0">
                     <inputLayout:SfTextInputLayout
-                        Padding="0,0,0,14"
+                        Style="{StaticResource CustomTextInputLayout}"
+                        
                         Hint="Тип продукту">
                         <combobox:SfComboBox
                             SelectedItem="{Binding SelectedProductType}"
@@ -46,6 +49,7 @@
                         </combobox:SfComboBox>
                     </inputLayout:SfTextInputLayout>
                     <inputLayout:SfTextInputLayout
+                        Style="{StaticResource CustomTextInputLayout}"
                         Hint="Фасувальник">
                         <Entry
                             Text="{Binding Packer}" />
@@ -55,6 +59,7 @@
                         Orientation="Horizontal">
 
                         <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
                             HorizontalOptions="FillAndExpand"
                             Hint="Дата фасування"
                             HelperText="Оберіть дату">
@@ -63,6 +68,7 @@
                         </inputLayout:SfTextInputLayout>
 
                         <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
                             HorizontalOptions="FillAndExpand"
                             Hint="Дата на упаковці"
                             HelperText="Оберіть дату">
@@ -73,6 +79,7 @@
 
                     <Grid>
                         <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
                             Grid.Column="0"
                             HorizontalOptions="FillAndExpand"
                             Hint="Кількість упаковок"
@@ -84,6 +91,7 @@
                                 Value="{Binding PackageAmount}" />
                         </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
                             Grid.Column="1"
                             HorizontalOptions="FillAndExpand"
                             Hint="Вага"
@@ -96,12 +104,14 @@
                         </inputLayout:SfTextInputLayout>
                     </Grid>
                     <inputLayout:SfTextInputLayout
+                        Style="{StaticResource CustomTextInputLayout}"
                         Hint="Коментар">
                         <Editor
                             AutoSize="TextChanges"
                             Text="{Binding Comment}" />
                     </inputLayout:SfTextInputLayout>
-                    <Button
+                    <buttons:SfButton
+                        Style="{StaticResource CustomButton}"
                         Text="add"
                         Command="{Binding AddProductItemCommand}" />
                 </StackLayout>

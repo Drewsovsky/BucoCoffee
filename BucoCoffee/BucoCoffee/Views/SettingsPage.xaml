@@ -23,6 +23,7 @@
                         ErrorText="Введіть тип прод."
                         HelperText="Тип продукту">
                         <Entry
+                            MaxLength="6"
                             Text="{Binding TypeTitle}" />
                     </inputLayout:SfTextInputLayout>
                     <StackLayout
@@ -62,7 +63,7 @@
                     <syncfusion:SfListView
                         Padding="8,0"
                         ItemSpacing="8"
-                        HeightRequest="300"
+                        HeightRequest="180"
                         AutoFitMode="DynamicHeight"
                         x:Name="listView"
                         SelectionMode="None"
@@ -70,35 +71,77 @@
                         <syncfusion:SfListView.ItemTemplate>
                             <DataTemplate
                                 x:DataType="local:ProductType">
-                                <StackLayout>
-                                    <Frame
-                                        BackgroundColor="{StaticResource LightGray}"
-                                        Padding="12"
-                                        CornerRadius="16">
-                                        <StackLayout
-                                            Orientation="Horizontal">
-                                            <Frame
-                                                BorderColor="{StaticResource QuickSilver}"
-                                                CornerRadius="16"
-                                                Padding="8,24"
-                                                BackgroundColor="{Binding ThemeColor}">
-                                            </Frame>
-                                            <Label
-                                                VerticalOptions="Center"
-                                                FontAttributes="Bold"
-                                                TextColor="{StaticResource Secondary}"
-                                                FontSize="24"
-                                                Text="{Binding Title}"
-                                                LineBreakMode="TailTruncation" />
-                                        </StackLayout>
-                                    </Frame>
-                                </StackLayout>
+                                <Frame
+                                    BorderColor="{StaticResource QuickSilver}"
+                                    Grid.Column="0"
+                                    CornerRadius="16"
+                                    BackgroundColor="{Binding ThemeColor}">
+                                    <Label
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        Grid.Column="0"
+                                        LineBreakMode="TailTruncation"
+                                        FontSize="24"
+                                        FontAttributes="Bold"
+                                        TextColor="{StaticResource Secondary}"
+                                        Text="{Binding Title}" />
+                                </Frame>
                             </DataTemplate>
                         </syncfusion:SfListView.ItemTemplate>
                         <syncfusion:SfListView.LayoutManager>
                             <syncfusion:GridLayout
-                                SpanCount="2" />
+                                SpanCount="3" />
                         </syncfusion:SfListView.LayoutManager>
+                    </syncfusion:SfListView>
+                    <BoxView
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource QuickSilver}" />
+                </StackLayout>
+
+                <Grid
+                    Padding="18,9">
+                    <inputLayout:SfTextInputLayout
+                        Style="{StaticResource CustomTextInputLayout}"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Hint="Назва"
+                        HasError="{Binding IsPackingTypeEmpty}"
+                        ErrorText="Введіть тип фасування"
+                        HelperText="Тип фасування">
+                        <Entry
+                            Text="{Binding PackingTypeTitle}"/>
+                    </inputLayout:SfTextInputLayout>
+                    <buttons:SfButton
+                        Grid.Column="2"
+                        Style="{StaticResource CustomButton}"
+                        Command="{Binding AddPackingTypeCommand}"
+                        Text="Додати" />
+                </Grid>
+                <StackLayout
+                    Spacing="0">
+                    <BoxView
+                        HeightRequest="1"
+                        BackgroundColor="{StaticResource QuickSilver}" />
+                    <syncfusion:SfListView
+                        Padding="8,0"
+                        ItemSpacing="8"
+                        HeightRequest="180"
+                        AutoFitMode="DynamicHeight"
+                        x:Name="packingTypeListView"
+                        SelectionMode="None"
+                        ItemsSource="{Binding PackingTypesList}">
+                        <syncfusion:SfListView.ItemTemplate>
+                            <DataTemplate
+                                x:DataType="local:PackingType">
+                                <Label
+                                    VerticalOptions="Center"
+                                    Grid.Column="0"
+                                    LineBreakMode="TailTruncation"
+                                    FontSize="18"
+                                    TextColor="{StaticResource Secondary}"
+                                    Text="{Binding Name}" />
+                            </DataTemplate>
+                        </syncfusion:SfListView.ItemTemplate>
                     </syncfusion:SfListView>
                     <BoxView
                         HeightRequest="1"
