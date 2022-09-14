@@ -86,24 +86,57 @@
                         x:DataType="local:ProductItem">
                         <StackLayout>
                             <Frame
+                                BorderColor="{StaticResource QuickSilver}"
                                 BackgroundColor="{StaticResource LightGray}"
                                 Padding="12"
                                 CornerRadius="16">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Frame
-                                        CornerRadius="16"
-                                        Padding="8,24"
-                                        BorderColor="{StaticResource QuickSilver}"
-                                        BackgroundColor="{Binding ProductKeyType.ThemeColor}">
-                                    </Frame>
-                                    <Label
-                                        VerticalOptions="Center"
-                                        FontAttributes="Bold"
-                                        TextColor="{StaticResource Secondary}"
-                                        FontSize="24"
-                                        Text="{Binding ProductKeyType.Title}"
-                                        LineBreakMode="TailTruncation" />
+                                    <Grid
+                                        ColumnDefinitions="3*,7*"
+                                        HorizontalOptions="FillAndExpand">
+                                        <Grid
+                                            Grid.Column="0">
+                                            <Frame
+                                                BorderColor="{StaticResource QuickSilver}"
+                                                Grid.Column="0"
+                                                CornerRadius="16"
+                                                BackgroundColor="{Binding ProductKeyType.ThemeColor}"/>
+                                            <Label
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                Grid.Column="0"
+                                                LineBreakMode="TailTruncation"
+                                                FontSize="24"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Secondary}"
+                                                Text="{Binding ProductKeyType.Title}" />
+                                        </Grid>
+                                        <StackLayout
+                                            Spacing="0"
+                                            Grid.Column="1">
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}"
+                                                BackgroundColor="Red"
+                                                Text="Тип фасування: GOLD" />
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}"
+                                                Text="{Binding PackingDate, StringFormat={}Дата фасування: {0}}" />
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}"
+                                                Text="{Binding PackageDate, StringFormat={}Дата на упаковці: {0}}" />
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}"
+                                                BackgroundColor="red"
+                                                Text="Вага: Weight KG" />
+                                            <!--<Label
+                                                Text="Кількість: Weight KG" />-->
+                                        </StackLayout>
+                                    </Grid>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
@@ -111,7 +144,7 @@
                 </syncfusion:SfListView.ItemTemplate>
                 <syncfusion:SfListView.LayoutManager>
                     <syncfusion:GridLayout
-                        SpanCount="2" />
+                        SpanCount="1" />
                 </syncfusion:SfListView.LayoutManager>
             </syncfusion:SfListView>
         </StackLayout>
