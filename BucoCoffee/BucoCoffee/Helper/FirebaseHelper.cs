@@ -12,6 +12,7 @@ namespace BucoCoffee.Helper
     {
         private readonly string TableProductType = "ProductType";
         private readonly string TableProductItem = "ProductItem";
+        private readonly string TablePackingType = "PackingType";
 
         readonly FirebaseClient _firebase = new FirebaseClient("https://bucocoffee-bd671-default-rtdb.firebaseio.com/");
 
@@ -86,8 +87,7 @@ namespace BucoCoffee.Helper
 
         private ProductType GetProductType(List<ProductType> list, Guid productTypeId)
         {
-            var  a = list.FirstOrDefault(item => item.Id == productTypeId);
-            return a;
+            return list.FirstOrDefault(item => item.Id == productTypeId);
         }
 
         #endregion
@@ -97,6 +97,7 @@ namespace BucoCoffee.Helper
         public async Task<List<ProductItem>> GetAllProductItems()
         {
             var typeList = await GetAllProductTypes();
+            var packingType = await GetAllPackingTypes();
 
             return (await _firebase
                 .Child(TableProductItem)
@@ -104,17 +105,20 @@ namespace BucoCoffee.Helper
                 {
                     Id = item.Object.Id,
                     SelectedProductTypeId = item.Object.SelectedProductTypeId,
+                    SelectedPackingTypeId = item.Object.SelectedPackingTypeId,
                     Comment = item.Object.Comment,
                     PackageDate = item.Object.PackageDate,
                     PackingDate = item.Object.PackingDate,
                     PackageAmount = item.Object.PackageAmount,
                     PackerName = item.Object.PackerName,
                     Weight = item.Object.Weight,
-                    ProductKeyType = GetProductType(typeList, item.Object.SelectedProductTypeId)
+                    ProductKeyType = GetProductType(typeList, item.Object.SelectedProductTypeId),
+                    PackingKeyType = GetPackingType(packingType, item.Object.SelectedPackingTypeId),
+                    ParameterAmountOrWeight = item.Object.PackageAmount != 0
                 }).ToList();
         }
 
-        public async Task AddProductItem(Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
+        public async Task AddProductItem(Guid productTypeId, Guid packingTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
         {
             await _firebase
                 .Child(TableProductItem)
@@ -122,6 +126,7 @@ namespace BucoCoffee.Helper
                 {
                     Id = Guid.NewGuid(),
                     SelectedProductTypeId = productTypeId,
+                    SelectedPackingTypeId = packingTypeId,
                     Comment = comment,
                     PackageDate = pckgDate,
                     PackingDate = packingDate,
@@ -172,5 +177,77 @@ namespace BucoCoffee.Helper
 
         #endregion
 
+        #region TablePackingType
+
+        public async Task<List<PackingType>> GetAllPackingTypes()
+        {
+            return (await _firebase
+                .Child(TablePackingType)
+                .OnceAsync<PackingType>()).Select(item => new PackingType
+                {
+                    Id = item.Object.Id,
+                    Name = item.Object.Name
+                }).ToList();
+        }
+
+        public async Task AddPackingType(string name)
+        {
+            await _firebase
+                .Child(TablePackingType)
+                .PostAsync(new PackingType()
+                {
+                    Id = Guid.NewGuid(),
+                    Name = name,
+                });
+        }
+
+        public async Task<PackingType> GetPackingType(Guid typeId)
+        {
+            var allPackingTypes = await GetAllPackingTypes();
+            await _firebase
+                .Child(TablePackingType)
+                .OnceAsync<PackingType>();
+            return allPackingTypes.FirstOrDefault(item => item.Id == typeId);
+        }
+
+        public async Task<PackingType> GetPackingType(string name)
+        {
+            var allPackingTypes = await GetAllPackingTypes();
+            await _firebase
+                .Child(TablePackingType)
+                .OnceAsync<PackingType>();
+            return allPackingTypes.FirstOrDefault(item => item.Name == name);
+        }
+
+        public async Task UpdatePackingType(Guid packingTypeId, string newName)
+        {
+            var toUpdatePackingType = (await _firebase
+                .Child(TablePackingType)
+                .OnceAsync<PackingType>()).FirstOrDefault(item => item.Object.Id == packingTypeId);
+
+            await _firebase
+                .Child(TablePackingType)
+                .Child(toUpdatePackingType.Key)
+                .PutAsync(new PackingType()
+                {
+                    Id = packingTypeId,
+                    Name = newName                    
+                });
+        }
+
+        public async Task DeletePackingType(Guid packingTypeId)
+        {
+            var toDeletePackingType = (await _firebase
+                .Child(TablePackingType)
+                .OnceAsync<PackingType>()).FirstOrDefault(item => item.Object.Id == packingTypeId);
+            await _firebase.Child(TablePackingType).Child(toDeletePackingType.Key).DeleteAsync();
+        }
+
+        private PackingType GetPackingType(List<PackingType> list, Guid packingTypeId)
+        {
+            return list.FirstOrDefault(item => item.Id == packingTypeId);
+        }
+
+        #endregion
     }
 }

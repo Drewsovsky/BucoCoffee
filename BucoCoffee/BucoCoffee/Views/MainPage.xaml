@@ -2,18 +2,18 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="BucoCoffee.MainPage"
-    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
-    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
     xmlns:local="clr-namespace:BucoCoffee.Models"
+    xmlns:syncfusion="clr-namespace:Syncfusion.ListView.XForms;assembly=Syncfusion.SfListView.XForms"
+    xmlns:buttons="clr-namespace:Syncfusion.XForms.Buttons;assembly=Syncfusion.Buttons.XForms"
+    x:Class="BucoCoffee.MainPage"
     Title="BucoCoffee">
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Text="Add item"
+            Text="Додати"
             Order="Secondary"
             Command="{Binding GotoNewItemPageCommand}" />
         <ToolbarItem
-            Text="Settings"
+            Text="Налаштування"
             Order="Secondary"
             Command="{Binding GotoSettingsPageCommand}" />
     </ContentPage.ToolbarItems>
@@ -47,14 +47,14 @@
                     Style="{StaticResource CustomButton}"
                     Text="{Binding SelectedDate}"
                     FontAttributes="Bold"
-                    x:Name="SfButtonCalendar" 
-                    Clicked="SfButtonCalendar_Clicked"/>
+                    x:Name="SfButtonCalendar"
+                    Clicked="SfButtonCalendar_Clicked" />
                 <DatePicker
                     x:Name="dummyDatePicker"
                     Date="{Binding SelectedDate}"
                     Grid.Column="1"
                     HeightRequest="1"
-                    Opacity="0"/>
+                    Opacity="0" />
                 <buttons:SfButton
                     Grid.Column="2"
                     Style="{StaticResource CustomButton}"
@@ -77,61 +77,138 @@
                 HeightRequest="1"
                 BackgroundColor="{StaticResource QuickSilver}" />
             <syncfusion:SfListView
+                Padding="8,0"
+                ItemSpacing="8"
                 AutoFitMode="DynamicHeight"
-                ItemsSource="{Binding ProductItemsList}">
+                ItemsSource="{Binding Products}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate
                         x:DataType="local:ProductItem">
-                        <StackLayout
-                            Padding="16,8">
+                        <StackLayout>
                             <Frame
+                                BorderColor="{StaticResource QuickSilver}"
                                 BackgroundColor="{StaticResource LightGray}"
                                 Padding="12"
                                 CornerRadius="16">
                                 <StackLayout
                                     Orientation="Horizontal">
-                                    <Frame
-                                        CornerRadius="16"
-                                        Padding="8"
-                                        BackgroundColor="{Binding ProductKeyType.ThemeColor}">
-                                        <Label
-                                            FontAttributes="Bold"
-                                            FontSize="24"
-                                            Text="{Binding ProductKeyType.Title}" />
-                                    </Frame>
+                                    <Grid
+                                        ColumnDefinitions="3*,7*"
+                                        HorizontalOptions="FillAndExpand">
+                                        <Grid
+                                            Grid.Column="0">
+                                            <Frame
+                                                BorderColor="{StaticResource QuickSilver}"
+                                                Grid.Column="0"
+                                                CornerRadius="16"
+                                                BackgroundColor="{Binding ProductKeyType.ThemeColor}"/>
+                                            <Label
+                                                VerticalOptions="Center"
+                                                HorizontalOptions="Center"
+                                                Grid.Column="0"
+                                                LineBreakMode="TailTruncation"
+                                                FontSize="24"
+                                                FontAttributes="Bold"
+                                                TextColor="{StaticResource Secondary}"
+                                                Text="{Binding ProductKeyType.Title}" />
+                                        </Grid>
+                                        <StackLayout
+                                            Spacing="0"
+                                            Grid.Column="1">
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}" >
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Тип фасування: " />
+                                                        <Span
+                                                            Text="{Binding PackingKeyType.Name}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Дата фасування: " />
+                                                        <Span
+                                                            Text="{Binding PackingDate}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Дата на упаковці: " />
+                                                        <Span
+                                                            Text="{Binding PackageDate}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
+                                            <Label
+                                                IsVisible="False"
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Кількість: " />
+                                                        <Span
+                                                            Text="{Binding PackageAmount}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="Label"
+                                                        Binding="{Binding ParameterAmountOrWeight}"
+                                                        Value="True">
+                                                        <Setter
+                                                            Property="IsVisible"
+                                                            Value="True" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                            <Label
+                                                IsVisible="False"
+                                                LineBreakMode="TailTruncation"
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Вага: " />
+                                                        <Span
+                                                            Text="{Binding Weight}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                                <Label.Triggers>
+                                                    <DataTrigger
+                                                        TargetType="Label"
+                                                        Binding="{Binding ParameterAmountOrWeight}"
+                                                        Value="False">
+                                                        <Setter
+                                                            Property="IsVisible"
+                                                            Value="True" />
+                                                    </DataTrigger>
+                                                </Label.Triggers>
+                                            </Label>
+                                        </StackLayout>
+                                    </Grid>
                                 </StackLayout>
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
                 </syncfusion:SfListView.ItemTemplate>
+                <syncfusion:SfListView.LayoutManager>
+                    <syncfusion:GridLayout
+                        SpanCount="1" />
+                </syncfusion:SfListView.LayoutManager>
             </syncfusion:SfListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-<!-- 
-    
-    <DataTemplate
-                            x:DataType="local:ProductType">
-    <StackLayout
-        Padding="16,8">
-        <Frame
-            BackgroundColor="{StaticResource LightGray}"
-            Padding="12"
-            CornerRadius="16">
-            <StackLayout
-                Orientation="Horizontal">
-                <Frame
-                    CornerRadius="16"
-                    Padding="8"
-                    BackgroundColor="{Binding ThemeColor}">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        Text="{Binding Title}" />
-                </Frame>
-            </StackLayout>
-        </Frame>
-    </StackLayout>
-    </DataTemplate> 
-    
-    -->
