@@ -86,7 +86,7 @@
                         x:DataType="local:ProductItem">
                         <StackLayout>
                             <Frame
-                                BackgroundColor="{StaticResource Secondary}"
+                                BackgroundColor="{StaticResource LightGray}"
                                 Padding="12"
                                 CornerRadius="16">
                                 <StackLayout
@@ -94,12 +94,13 @@
                                     <Frame
                                         CornerRadius="16"
                                         Padding="8,24"
+                                        BorderColor="{StaticResource QuickSilver}"
                                         BackgroundColor="{Binding ProductKeyType.ThemeColor}">
                                     </Frame>
                                     <Label
                                         VerticalOptions="Center"
                                         FontAttributes="Bold"
-                                        TextColor="{StaticResource GhostWhite}"
+                                        TextColor="{StaticResource Secondary}"
                                         FontSize="24"
                                         Text="{Binding ProductKeyType.Title}"
                                         LineBreakMode="TailTruncation" />

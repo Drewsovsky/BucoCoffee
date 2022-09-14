@@ -29,7 +29,7 @@
                         Grid.Column="1">
                         <Frame
                             x:Name="selectedColor"
-                            BorderColor="{StaticResource Secondary}"
+                            BorderColor="{StaticResource QuickSilver}"
                             CornerRadius="18"
                             HorizontalOptions="CenterAndExpand"
                             VerticalOptions="CenterAndExpand"
@@ -72,12 +72,13 @@
                                 x:DataType="local:ProductType">
                                 <StackLayout>
                                     <Frame
-                                        BackgroundColor="{StaticResource Secondary}"
+                                        BackgroundColor="{StaticResource LightGray}"
                                         Padding="12"
                                         CornerRadius="16">
                                         <StackLayout
                                             Orientation="Horizontal">
                                             <Frame
+                                                BorderColor="{StaticResource QuickSilver}"
                                                 CornerRadius="16"
                                                 Padding="8,24"
                                                 BackgroundColor="{Binding ThemeColor}">
@@ -85,7 +86,7 @@
                                             <Label
                                                 VerticalOptions="Center"
                                                 FontAttributes="Bold"
-                                                TextColor="{StaticResource GhostWhite}"
+                                                TextColor="{StaticResource Secondary}"
                                                 FontSize="24"
                                                 Text="{Binding Title}"
                                                 LineBreakMode="TailTruncation" />
