@@ -78,7 +78,7 @@
                 BackgroundColor="{StaticResource QuickSilver}" />
             <syncfusion:SfListView
                 AutoFitMode="DynamicHeight"
-                ItemsSource="{Binding ProductItemsList}">
+                ItemsSource="{Binding Products}">
                 <syncfusion:SfListView.ItemTemplate>
                     <DataTemplate
                         x:DataType="local:ProductItem">

@@ -2,6 +2,7 @@
 using BucoCoffee.Views;
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -10,12 +11,20 @@ namespace BucoCoffee.ViewModels
     public class MainPageViewModel : BaseViewModel
     {
         public ObservableCollection<ProductItem> ProductItemsList { get; set; }
+        public ObservableCollection<ProductItem> Products { get; set; }
+
         private string _selectedDate;
         public string SelectedDate
         {
             get { return _selectedDate; }
             set { 
                 _selectedDate = DateTime.Parse(value).ToShortDateString();
+
+                if (Products != null) { Products.Clear(); }
+
+                Products = new ObservableCollection<ProductItem>(ProductItemsList.Where(product => product.PackingDate.Equals(SelectedDate)));
+
+                OnPropertyChanged(nameof(Products));
                 OnPropertyChanged(nameof(SelectedDate));
             }
         }
@@ -34,10 +43,10 @@ namespace BucoCoffee.ViewModels
 
         public async void Init()
         {
-            SelectedDate = DateTime.Now.ToString();
             ProductItemsList = new ObservableCollection<ProductItem>(await _firebaseHelper.GetAllProductItems());
+            SelectedDate = DateTime.Now.ToString();
 
-            OnPropertyChanged(nameof(ProductItemsList));
+            // OnPropertyChanged(nameof(ProductItemsList));
         }
 
         async private void GotoNewItemPage()
