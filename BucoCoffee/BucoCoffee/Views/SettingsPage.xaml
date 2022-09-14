@@ -8,7 +8,7 @@
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:colorpicker="clr-namespace:ColorPicker;assembly=ColorPicker"
     x:Class="BucoCoffee.Views.SettingsPage"
-    Title="Settings">
+    Title="Налаштування">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout
@@ -19,6 +19,8 @@
                         Style="{StaticResource CustomTextInputLayout}"
                         Grid.Column="0"
                         Hint="Назва"
+                        HasError="{Binding IsTypeTitleEmpty}"
+                        ErrorText="Введіть тип прод."
                         HelperText="Тип продукту">
                         <Entry
                             Text="{Binding TypeTitle}" />

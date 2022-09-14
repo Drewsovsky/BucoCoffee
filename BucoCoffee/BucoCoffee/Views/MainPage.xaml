@@ -9,11 +9,11 @@
     Title="BucoCoffee">
     <ContentPage.ToolbarItems>
         <ToolbarItem
-            Text="Add item"
+            Text="Додати"
             Order="Secondary"
             Command="{Binding GotoNewItemPageCommand}" />
         <ToolbarItem
-            Text="Settings"
+            Text="Налаштування"
             Order="Secondary"
             Command="{Binding GotoSettingsPageCommand}" />
     </ContentPage.ToolbarItems>
@@ -47,14 +47,14 @@
                     Style="{StaticResource CustomButton}"
                     Text="{Binding SelectedDate}"
                     FontAttributes="Bold"
-                    x:Name="SfButtonCalendar" 
-                    Clicked="SfButtonCalendar_Clicked"/>
+                    x:Name="SfButtonCalendar"
+                    Clicked="SfButtonCalendar_Clicked" />
                 <DatePicker
                     x:Name="dummyDatePicker"
                     Date="{Binding SelectedDate}"
                     Grid.Column="1"
                     HeightRequest="1"
-                    Opacity="0"/>
+                    Opacity="0" />
                 <buttons:SfButton
                     Grid.Column="2"
                     Style="{StaticResource CustomButton}"
@@ -116,30 +116,3 @@
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
-<!-- 
-    
-    <DataTemplate
-                            x:DataType="local:ProductType">
-    <StackLayout
-        Padding="16,8">
-        <Frame
-            BackgroundColor="{StaticResource LightGray}"
-            Padding="12"
-            CornerRadius="16">
-            <StackLayout
-                Orientation="Horizontal">
-                <Frame
-                    CornerRadius="16"
-                    Padding="8"
-                    BackgroundColor="{Binding ThemeColor}">
-                    <Label
-                        FontAttributes="Bold"
-                        FontSize="24"
-                        Text="{Binding Title}" />
-                </Frame>
-            </StackLayout>
-        </Frame>
-    </StackLayout>
-    </DataTemplate> 
-    
-    -->

@@ -1,7 +1,6 @@
 ﻿using BucoCoffee.Models;
 using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -12,8 +11,29 @@ namespace BucoCoffee.ViewModels
         private Random random = new Random();
 
         public ObservableCollection<ProductType> ProductTypesList { get; set; }
-        public string TypeTitle { get; set; }
 
+        private string _typeTitle;
+        public string TypeTitle
+        {
+            get { return _typeTitle; }
+            set
+            {
+                _typeTitle = value;
+                
+                if (IsProductTypeAdded)
+                {
+                    IsTypeTitleEmpty = false;
+                    IsProductTypeAdded = false;
+                }
+                else
+                {
+                    IsTypeTitleEmpty = string.IsNullOrWhiteSpace(_typeTitle);
+                }
+
+                OnPropertyChanged(nameof(IsTypeTitleEmpty));
+            }
+        }
+        
         private Color _selectedColor;
         public Color SelectedColor {
             get { return _selectedColor; }
@@ -23,7 +43,9 @@ namespace BucoCoffee.ViewModels
                 OnPropertyChanged(nameof(SelectedColor));
             }
         }
-        
+        public bool IsTypeTitleEmpty { get; set; } = false;
+        private bool IsProductTypeAdded { get; set; }
+
         public ICommand AddProductTypeCommand => new Command(AddProductType);
 
         public SettingsPageViewModel(INavigation navigation)
@@ -44,11 +66,24 @@ namespace BucoCoffee.ViewModels
 
         private async void AddProductType()
         {
-            await _firebaseHelper.AddProductType(TypeTitle, HexConverter(SelectedColor));
+            IsTypeTitleEmpty = false;
 
-            ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
-            TypeTitle = String.Empty;
+            if (string.IsNullOrWhiteSpace(TypeTitle))
+            {
+                IsTypeTitleEmpty = true;
+            }
+            else
+            {
+                IsTypeTitleEmpty = false;
 
+                await _firebaseHelper.AddProductType(TypeTitle, HexConverter(SelectedColor));
+
+                ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
+                TypeTitle = String.Empty;
+                IsProductTypeAdded = true;
+            }
+
+            OnPropertyChanged(nameof(IsTypeTitleEmpty));
             OnPropertyChanged(nameof(TypeTitle));
             OnPropertyChanged(nameof(ProductTypesList));
         }
