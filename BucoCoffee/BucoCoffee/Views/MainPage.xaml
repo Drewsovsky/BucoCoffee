@@ -122,12 +122,28 @@
                                                 Text="Тип фасування: GOLD" />
                                             <Label
                                                 LineBreakMode="TailTruncation"
-                                                TextColor="{StaticResource Secondary}"
-                                                Text="{Binding PackingDate, StringFormat={}Дата фасування: {0}}" />
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Дата фасування: " />
+                                                        <Span
+                                                            Text="{Binding PackingDate}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                             <Label
                                                 LineBreakMode="TailTruncation"
-                                                TextColor="{StaticResource Secondary}"
-                                                Text="{Binding PackageDate, StringFormat={}Дата на упаковці: {0}}" />
+                                                TextColor="{StaticResource Secondary}">
+                                                <Label.FormattedText>
+                                                    <FormattedString>
+                                                        <Span
+                                                            Text="Дата на упаковці: " />
+                                                        <Span
+                                                            Text="{Binding PackageDate}" />
+                                                    </FormattedString>
+                                                </Label.FormattedText>
+                                            </Label>
                                             <Label
                                                 LineBreakMode="TailTruncation"
                                                 TextColor="{StaticResource Secondary}"
