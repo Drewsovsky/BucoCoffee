@@ -114,7 +114,7 @@ namespace BucoCoffee.Helper
                 }).ToList();
         }
 
-        public async Task AddProductItem(Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
+        public async Task AddProductItem(Guid productTypeId, Guid packingTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
         {
             await _firebase
                 .Child(TableProductItem)
@@ -122,6 +122,7 @@ namespace BucoCoffee.Helper
                 {
                     Id = Guid.NewGuid(),
                     SelectedProductTypeId = productTypeId,
+                    SelectedPackingTypeId = packingTypeId,
                     Comment = comment,
                     PackageDate = pckgDate,
                     PackingDate = packingDate,

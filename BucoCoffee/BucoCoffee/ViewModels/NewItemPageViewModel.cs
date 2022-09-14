@@ -12,12 +12,13 @@ namespace BucoCoffee.ViewModels
         public const double MAX_AMOUNT = 1_000_000.0f;
 
         public ObservableCollection<ProductType> ProductTypesList { get; set; }
+        public ObservableCollection<PackingType> PackingTypesList { get; set; }
         public string Packer { get; set; }
 
         private string _packingDate;
-        public string PackingDate { 
-            get { return _packingDate; } 
-            set { _packingDate = DateTime.Parse(value).ToShortDateString(); } 
+        public string PackingDate {
+            get { return _packingDate; }
+            set { _packingDate = DateTime.Parse(value).ToShortDateString(); }
         }
 
         private string _packageDate;
@@ -30,13 +31,8 @@ namespace BucoCoffee.ViewModels
         public double PackageWeight { get; set; }
         public string Comment { get; set; }
 
-        private ProductType _selectedProductType;
-
-        public ProductType SelectedProductType
-        {
-            get { return _selectedProductType; }
-            set { _selectedProductType = value; }
-        }
+        public ProductType SelectedProductType { get; set; }
+        public PackingType SelectedPackingType { get; set; }
 
         public ICommand AddProductItemCommand => new Command(AddProductItem);
 
@@ -53,22 +49,25 @@ namespace BucoCoffee.ViewModels
             base.OnAppearing();
 
             ProductTypesList = new ObservableCollection<ProductType>(await _firebaseHelper.GetAllProductTypes());
+            PackingTypesList = new ObservableCollection<PackingType>(await _firebaseHelper.GetAllPackingTypes());
 
             OnPropertyChanged(nameof(ProductTypesList));
+            OnPropertyChanged(nameof(PackingTypesList));
         }
 
         public async void AddProductItem()
         {
             if (SelectedProductType != null &&
+                SelectedPackingType != null &&
                 !String.IsNullOrWhiteSpace(Packer) &&
                 !String.IsNullOrWhiteSpace(PackageDate) &&
                 !String.IsNullOrWhiteSpace(PackingDate) &&
-                PackageAmount > 0 &&
-                PackageWeight > 0)
+                (PackageAmount > 0 || PackageWeight > 0))
             {
                 Guid productTypeId = SelectedProductType.Id;
+                Guid packingTypeId = SelectedPackingType.Id;
 
-                await _firebaseHelper.AddProductItem(productTypeId, Comment, PackageDate, PackingDate, PackageAmount, Packer, PackageWeight);
+                await _firebaseHelper.AddProductItem(productTypeId, packingTypeId, Comment, PackageDate, PackingDate, PackageAmount, Packer, PackageWeight);
             }
             else
             {

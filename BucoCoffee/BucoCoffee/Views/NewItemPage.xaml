@@ -27,27 +27,45 @@
                 </StackLayout>
                 <StackLayout
                     Padding="18,0">
-                    <inputLayout:SfTextInputLayout
-                        Style="{StaticResource CustomTextInputLayout}"
-                        
-                        Hint="Тип продукту">
-                        <combobox:SfComboBox
-                            SelectedItem="{Binding SelectedProductType}"
-                            DisplayMemberPath="Title"
-                            DataSource="{Binding ProductTypesList}">
-                            <combobox:SfComboBox.ItemTemplate>
-                                <DataTemplate
-                                    x:DataType="local:ProductType">
-                                    <StackLayout
-                                        BackgroundColor="{Binding ThemeColor}"
-                                        Orientation="Horizontal">
+                    <StackLayout
+                        Orientation="Horizontal">
+                        <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
+                            Hint="Тип продукту">
+                            <combobox:SfComboBox
+                                SelectedItem="{Binding SelectedProductType}"
+                                DisplayMemberPath="Title"
+                                DataSource="{Binding ProductTypesList}">
+                                <combobox:SfComboBox.ItemTemplate>
+                                    <DataTemplate
+                                        x:DataType="local:ProductType">
+                                        <StackLayout
+                                            BackgroundColor="{Binding ThemeColor}"
+                                            Orientation="Horizontal">
+                                            <Label
+                                                Text="{Binding Title}" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </combobox:SfComboBox.ItemTemplate>
+                            </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout
+                            Style="{StaticResource CustomTextInputLayout}"
+                            Hint="Тип фасування">
+                            <combobox:SfComboBox
+                                SelectedItem="{Binding SelectedPackingType}"
+                                DisplayMemberPath="Name"
+                                DataSource="{Binding PackingTypesList}">
+                                <combobox:SfComboBox.ItemTemplate>
+                                    <DataTemplate
+                                        x:DataType="local:PackingType">
                                         <Label
-                                            Text="{Binding Title}" />
-                                    </StackLayout>
-                                </DataTemplate>
-                            </combobox:SfComboBox.ItemTemplate>
-                        </combobox:SfComboBox>
-                    </inputLayout:SfTextInputLayout>
+                                            Text="{Binding Name}" />
+                                    </DataTemplate>
+                                </combobox:SfComboBox.ItemTemplate>
+                            </combobox:SfComboBox>
+                        </inputLayout:SfTextInputLayout>
+                    </StackLayout>
                     <inputLayout:SfTextInputLayout
                         Style="{StaticResource CustomTextInputLayout}"
                         Hint="Фасувальник">

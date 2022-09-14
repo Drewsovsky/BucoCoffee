@@ -6,7 +6,7 @@ namespace BucoCoffee.Models
     {
         public Guid Id { get; set; }
         public Guid SelectedProductTypeId { get; set; }
-        public Guid SelectedpackingTypeId { get; set; }
+        public Guid SelectedPackingTypeId { get; set; }
         public string PackingDate { get; set; } // DateTime
         public string PackageDate { get; set; } // DateTime
         public string PackerName { get; set; }
