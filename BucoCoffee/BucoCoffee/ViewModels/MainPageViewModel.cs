@@ -16,7 +16,7 @@ namespace BucoCoffee.ViewModels
         private string _selectedDate;
         public string SelectedDate
         {
-            get { return _selectedDate; }
+            get => _selectedDate;
             set { 
                 _selectedDate = DateTime.Parse(value).ToShortDateString();
 
@@ -29,10 +29,23 @@ namespace BucoCoffee.ViewModels
             }
         }
 
+        private bool _isRefresging;
+        public bool IsRefreshing
+        {
+            get => _isRefresging;
+            set
+            {
+                _isRefresging = value;
+
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
         public ICommand GotoNewItemPageCommand => new Command(GotoNewItemPage);
         public ICommand GotoSettingsPageCommand => new Command(GotoSettingsPage);
         public ICommand PastDateCommand => new Command(PastDate);
         public ICommand FutureDateCommand => new Command(FutureDate);
+        public ICommand RefreshProductsCommand => new Command(RefreshProducts);
 
         public MainPageViewModel(INavigation navigation) 
         {
@@ -41,9 +54,28 @@ namespace BucoCoffee.ViewModels
             Init();
         }
 
+        private async void RefreshProducts()
+        {
+            IsRefreshing = true;
+
+            ProductItemsList.Clear();
+            Products.Clear();
+
+            ProductItemsList = new ObservableCollection<ProductItem>(await _firebaseHelper.GetAllProductItems());
+            SortProductsList();
+
+            IsRefreshing = false;
+        }
+
         public async void Init()
         {
             ProductItemsList = new ObservableCollection<ProductItem>(await _firebaseHelper.GetAllProductItems());
+
+            SortProductsList();
+        }
+
+        private void SortProductsList()
+        {
             SelectedDate = DateTime.Now.ToString();
         }
 
