@@ -1,4 +1,5 @@
-﻿using BucoCoffee.Models;
+﻿using BucoCoffee.Global;
+using BucoCoffee.Models;
 using System;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -68,6 +69,10 @@ namespace BucoCoffee.ViewModels
                 Guid packingTypeId = SelectedPackingType.Id;
 
                 await _firebaseHelper.AddProductItem(productTypeId, packingTypeId, Comment, PackageDate, PackingDate, PackageAmount, Packer, PackageWeight);
+
+                MessagingCenter.Send(App.Current, Constants.MessagingCenter.AddedProduct);
+
+                await Application.Current.MainPage.Navigation.PopAsync();
             }
             else
             {

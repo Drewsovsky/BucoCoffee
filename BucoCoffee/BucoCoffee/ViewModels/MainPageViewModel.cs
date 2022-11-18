@@ -1,8 +1,10 @@
-﻿using BucoCoffee.Models;
+﻿using BucoCoffee.Global;
+using BucoCoffee.Models;
 using BucoCoffee.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
 
@@ -51,7 +53,21 @@ namespace BucoCoffee.ViewModels
         {
             Navigation = navigation;
 
+            Subscribe();
+
             Init();
+        }
+
+        ~MainPageViewModel() {
+            MessagingCenter.Unsubscribe<MainPageViewModel, string>(this, Constants.MessagingCenter.AddedProduct);
+        }
+
+        private void Subscribe()
+        {
+            MessagingCenter.Subscribe<Application>(this, Constants.MessagingCenter.AddedProduct, (sender) =>
+            {
+                RefreshProducts();
+            });
         }
 
         private async void RefreshProducts()
