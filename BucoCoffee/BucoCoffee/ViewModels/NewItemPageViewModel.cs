@@ -70,7 +70,7 @@ namespace BucoCoffee.ViewModels
 
                 await _firebaseHelper.AddProductItem(productTypeId, packingTypeId, Comment, PackageDate, PackingDate, PackageAmount, Packer, PackageWeight);
 
-                MessagingCenter.Send(this, Constants.MessagingCenter.AddedProduct, true);
+                MessagingCenter.Send(App.Current, Constants.MessagingCenter.AddedProduct);
 
                 await Application.Current.MainPage.Navigation.PopAsync();
             }

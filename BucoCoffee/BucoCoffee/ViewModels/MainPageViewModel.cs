@@ -64,12 +64,8 @@ namespace BucoCoffee.ViewModels
 
         private void Subscribe()
         {
-            MessagingCenter.Subscribe<MainPageViewModel, bool>(this, Constants.MessagingCenter.AddedProduct, (sender, arg) =>
+            MessagingCenter.Subscribe<Application>(this, Constants.MessagingCenter.AddedProduct, (sender) =>
             {
-                if (arg != null)
-                {
-                    var a = 0;
-                }
                 RefreshProducts();
             });
         }
