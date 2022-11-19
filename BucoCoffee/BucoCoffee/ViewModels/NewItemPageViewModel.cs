@@ -17,7 +17,8 @@ namespace BucoCoffee.ViewModels
         public string Packer { get; set; }
 
         private string _packingDate;
-        public string PackingDate {
+        public string PackingDate
+        {
             get { return _packingDate; }
             set { _packingDate = DateTime.Parse(value).ToShortDateString(); }
         }
@@ -34,15 +35,25 @@ namespace BucoCoffee.ViewModels
 
         public ProductType SelectedProductType { get; set; }
         public PackingType SelectedPackingType { get; set; }
+        public ProductItem DTOSelectedProduct { get; set; }
+        public bool IsEditMode { get; set; } = false;
+
 
         public ICommand AddProductItemCommand => new Command(AddProductItem);
+        public ICommand EditProductItemCommand => new Command(EditProductItem);
 
-        public NewItemPageViewModel(INavigation navigation)
+        public NewItemPageViewModel(INavigation navigation, ProductItem productItem)
         {
             Navigation = navigation;
 
             PackingDate = DateTime.Now.ToString();
             PackageDate = DateTime.Now.ToString();
+
+            if (productItem != null)
+            {
+                DTOSelectedProduct = productItem;
+                SetProductItemFields(DTOSelectedProduct);
+            }
         }
 
         public async override void OnAppearing()
@@ -54,29 +65,103 @@ namespace BucoCoffee.ViewModels
 
             OnPropertyChanged(nameof(ProductTypesList));
             OnPropertyChanged(nameof(PackingTypesList));
+
+            if (DTOSelectedProduct != null)
+            {
+                SelectedProductType = DTOSelectedProduct.ProductKeyType;
+                SelectedPackingType = DTOSelectedProduct.PackingKeyType;
+
+                OnPropertyChanged(nameof(SelectedProductType));
+                OnPropertyChanged(nameof(SelectedPackingType));
+            }
+        }
+
+        private void SetProductItemFields(ProductItem dto)
+        {
+            Packer = dto.PackerName;
+            PackageAmount = dto.PackageAmount;
+            PackageWeight = dto.Weight;
+            Comment = dto.Comment;
+            PackingDate = dto.PackingDate;
+            PackageDate = dto.PackageDate;
         }
 
         public async void AddProductItem()
         {
-            if (SelectedProductType != null &&
+            try
+            {
+                if (SelectedProductType != null &&
                 SelectedPackingType != null &&
                 !String.IsNullOrWhiteSpace(Packer) &&
                 !String.IsNullOrWhiteSpace(PackageDate) &&
                 !String.IsNullOrWhiteSpace(PackingDate) &&
                 (PackageAmount > 0 || PackageWeight > 0))
-            {
-                Guid productTypeId = SelectedProductType.Id;
-                Guid packingTypeId = SelectedPackingType.Id;
+                {
+                    Guid productTypeId = SelectedProductType.Id;
+                    Guid packingTypeId = SelectedPackingType.Id;
 
-                await _firebaseHelper.AddProductItem(productTypeId, packingTypeId, Comment, PackageDate, PackingDate, PackageAmount, Packer, PackageWeight);
+                    await _firebaseHelper.AddProductItem(
+                        productTypeId,
+                        packingTypeId,
+                        Comment,
+                        PackageDate,
+                        PackingDate,
+                        PackageAmount,
+                        Packer,
+                        PackageWeight);
 
-                MessagingCenter.Send(App.Current, Constants.MessagingCenter.AddedProduct);
+                    MessagingCenter.Send(App.Current, Constants.MessagingCenter.AddedProduct);
 
-                await Application.Current.MainPage.Navigation.PopAsync();
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    // TODO: Errors
+                }
             }
-            else
+            catch (Exception ex)
             {
-                // TODO: Errors
+                Console.WriteLine("Error found: " + ex);
+            }
+        }
+
+        public async void EditProductItem()
+        {
+            try
+            {
+                if (SelectedProductType != null &&
+                    SelectedPackingType != null &&
+                    !String.IsNullOrWhiteSpace(Packer) &&
+                    !String.IsNullOrWhiteSpace(PackageDate) &&
+                    !String.IsNullOrWhiteSpace(PackingDate) &&
+                    (PackageAmount > 0 || PackageWeight > 0))
+                {
+                    Guid productTypeId = SelectedProductType.Id;
+                    Guid packingTypeId = SelectedPackingType.Id;
+
+                    await _firebaseHelper.UpdateProductitem(
+                        DTOSelectedProduct.Id,
+                        packingTypeId,
+                        productTypeId,                        
+                        Comment,
+                        PackageDate,
+                        PackingDate,
+                        PackageAmount,
+                        Packer,
+                        PackageWeight);
+
+                    MessagingCenter.Send(App.Current, Constants.MessagingCenter.AddedProduct);
+
+                    await Application.Current.MainPage.Navigation.PopAsync();
+                }
+                else
+                {
+                    // TODO: Errors
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error found: " + ex);
             }
         }
     }

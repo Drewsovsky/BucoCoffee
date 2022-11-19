@@ -84,7 +84,8 @@
                     Padding="8,0"
                     ItemSpacing="8"
                     AutoFitMode="DynamicHeight"
-                    ItemsSource="{Binding Products}">
+                    ItemsSource="{Binding Products}"
+                    SelectedItem="{Binding SelectedProduct}">
                     <syncfusion:SfListView.ItemTemplate>
                         <DataTemplate
                             x:DataType="local:ProductItem">

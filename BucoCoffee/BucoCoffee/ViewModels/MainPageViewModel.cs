@@ -43,6 +43,21 @@ namespace BucoCoffee.ViewModels
             }
         }
 
+        private ProductItem _selectedProduct;
+        public ProductItem SelectedProduct
+        {
+            get => _selectedProduct;
+            set
+            {
+                _selectedProduct = value;
+
+                if (SelectedProduct != null)
+                {
+                    GotoEditItemPage(SelectedProduct);
+                }
+            }
+        }
+
         public ICommand GotoNewItemPageCommand => new Command(GotoNewItemPage);
         public ICommand GotoSettingsPageCommand => new Command(GotoSettingsPage);
         public ICommand PastDateCommand => new Command(PastDate);
@@ -98,6 +113,11 @@ namespace BucoCoffee.ViewModels
         async private void GotoNewItemPage()
         {
             await Navigation.PushAsync(new NewItemPage());
+        }
+
+        async private void GotoEditItemPage(ProductItem productItem) // Same as new item page style
+        {
+            await Navigation.PushAsync(new NewItemPage(productItem));
         }
 
         async private void GotoSettingsPage()
