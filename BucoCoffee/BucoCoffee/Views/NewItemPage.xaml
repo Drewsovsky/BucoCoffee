@@ -7,6 +7,7 @@
     xmlns:numeric="clr-namespace:Syncfusion.SfNumericUpDown.XForms;assembly=Syncfusion.SfNumericUpDown.XForms"
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+    xmlns:converters="clr-namespace:BucoCoffee.Helper.Converter"
     x:Class="BucoCoffee.Views.NewItemPage"
     Title="BucoCoffee">
     <ContentPage.Content>
@@ -130,9 +131,15 @@
                             Text="{Binding Comment}" />
                     </inputLayout:SfTextInputLayout>
                     <buttons:SfButton
+                        IsVisible="{Binding IsEditMode}"
                         Style="{StaticResource CustomButton}"
-                        Text="add"
+                        Text="Додати"
                         Command="{Binding AddProductItemCommand}" />
+                    <buttons:SfButton
+                        IsVisible="{Binding IsEditMode, Converter={converters:BooleanConverter}}"
+                        Style="{StaticResource CustomButton}"
+                        Text="Відредагувати"
+                        Command="{Binding EditProductItemCommand}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

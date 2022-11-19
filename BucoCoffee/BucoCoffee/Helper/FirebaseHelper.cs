@@ -145,7 +145,7 @@ namespace BucoCoffee.Helper
             return allProductItems.FirstOrDefault(item => item.Id == productId);
         }
 
-        public async Task UpdateProductitem(Guid productItemId, Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
+        public async Task UpdateProductitem(Guid productItemId, Guid packingTypeId, Guid productTypeId, string comment, string pckgDate, string packingDate, int pckgAmount, string packerName, double weight)
         {
             var toUpdateProductitem = (await _firebase
                 .Child(TableProductItem)
@@ -157,6 +157,7 @@ namespace BucoCoffee.Helper
                 .PutAsync(new ProductItem()
                 {
                     Id = productItemId,
+                    SelectedPackingTypeId = packingTypeId,
                     SelectedProductTypeId = productTypeId,
                     Comment = comment,
                     PackageDate = pckgDate,
