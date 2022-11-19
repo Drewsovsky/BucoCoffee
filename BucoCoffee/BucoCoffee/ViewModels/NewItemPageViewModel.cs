@@ -34,15 +34,22 @@ namespace BucoCoffee.ViewModels
 
         public ProductType SelectedProductType { get; set; }
         public PackingType SelectedPackingType { get; set; }
+        public ProductItem DTOSelectedProduct { get; set; }
 
         public ICommand AddProductItemCommand => new Command(AddProductItem);
 
-        public NewItemPageViewModel(INavigation navigation)
+        public NewItemPageViewModel(INavigation navigation, ProductItem productItem)
         {
             Navigation = navigation;
 
             PackingDate = DateTime.Now.ToString();
             PackageDate = DateTime.Now.ToString();
+
+            if (productItem != null)
+            {
+                DTOSelectedProduct = productItem;
+                SetProductItemFields(DTOSelectedProduct);
+            }
         }
 
         public async override void OnAppearing()
@@ -54,6 +61,26 @@ namespace BucoCoffee.ViewModels
 
             OnPropertyChanged(nameof(ProductTypesList));
             OnPropertyChanged(nameof(PackingTypesList));
+
+            if (DTOSelectedProduct != null)
+            {
+                SelectedProductType = DTOSelectedProduct.ProductKeyType;
+                SelectedPackingType = DTOSelectedProduct.PackingKeyType;
+
+                OnPropertyChanged(nameof(SelectedProductType));
+                OnPropertyChanged(nameof(SelectedPackingType));
+            }
+        }
+
+        private void SetProductItemFields(ProductItem dto)
+        {
+            Packer = dto.PackerName;
+            PackageAmount = dto.PackageAmount;
+            PackageWeight = dto.Weight;
+            Comment = dto.Comment;
+            PackingDate = dto.PackingDate;
+            PackageDate = dto.PackageDate;
+
         }
 
         public async void AddProductItem()

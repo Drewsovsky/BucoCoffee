@@ -50,8 +50,11 @@ namespace BucoCoffee.ViewModels
             set
             {
                 _selectedProduct = value;
-                
 
+                if (SelectedProduct != null)
+                {
+                    GotoEditItemPage(SelectedProduct);
+                }
             }
         }
 
@@ -112,9 +115,9 @@ namespace BucoCoffee.ViewModels
             await Navigation.PushAsync(new NewItemPage());
         }
 
-        async private void GotoEditItemPage() // Same as new item page style
+        async private void GotoEditItemPage(ProductItem productItem) // Same as new item page style
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewItemPage(productItem));
         }
 
         async private void GotoSettingsPage()
