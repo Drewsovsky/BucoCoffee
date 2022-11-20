@@ -40,6 +40,19 @@ namespace BucoCoffee.ViewModels
 
         public ICommand AddProductItemCommand => new Command(AddProductItem);
         public ICommand EditProductItemCommand => new Command(EditProductItem);
+        public ICommand TakePhotoCommand => new Command(TakePhoto);
+        // TODO:
+        private void TakePhoto()
+        {
+
+        }
+
+        public ICommand SelectFromGalleryCommand => new Command(SelectFromGallery);
+        // TODO:
+        private void SelectFromGallery()
+        {
+
+        }
 
         public NewItemPageViewModel(INavigation navigation, ProductItem productItem)
         {

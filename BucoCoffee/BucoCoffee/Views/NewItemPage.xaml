@@ -15,16 +15,80 @@
             BackgroundColor="{StaticResource GhostWhite}">
             <StackLayout>
                 <StackLayout
-                    Background="red">
-                    <Frame
-                        HorizontalOptions="CenterAndExpand"
-                        HeightRequest="100"
-                        WidthRequest="100"
-                        CornerRadius="18"
-                        BackgroundColor="LightGray">
-                        <Label
-                            Text="icon" />
-                    </Frame>
+                    HeightRequest="400"
+                    Background="coral">
+                    <StackLayout
+                        Spacing="0"
+                        HorizontalOptions="EndAndExpand"
+                        BackgroundColor="Green">
+                        <ImageButton
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            Padding="10"
+                            Source="gallery"
+                            Command="{Binding SelectFromGalleryCommand}" />
+                        <ImageButton
+                            HeightRequest="50"
+                            WidthRequest="50"
+                            Padding="10"
+                            Source="camera" 
+                            Command="{Binding TakePhotoCommand}"/>
+                    </StackLayout>
+
+                    <ScrollView
+                        VerticalOptions="EndAndExpand"
+                        Padding="0,0,0,8"
+                        Orientation="Horizontal">
+                        <StackLayout
+                            Orientation="Horizontal">
+                            <Frame
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="18"
+                                BackgroundColor="LightGray">
+                                <Label
+                                    Text="icon" />
+                            </Frame>
+                            <Frame
+                                BorderColor="Green"
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="18"
+                                BackgroundColor="LightGray">
+                                <Label
+                                    Text="icon" />
+                            </Frame>
+                            <Frame
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="18"
+                                BackgroundColor="LightGray">
+                                <Label
+                                    Text="icon" />
+                            </Frame>
+                            <Frame
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="18"
+                                BackgroundColor="LightGray">
+                                <Label
+                                    Text="icon" />
+                            </Frame>
+                            <Frame
+                                HorizontalOptions="CenterAndExpand"
+                                HeightRequest="60"
+                                WidthRequest="60"
+                                CornerRadius="18"
+                                BackgroundColor="LightGray">
+                                <Label
+                                    Text="icon" />
+                            </Frame>
+                        </StackLayout>
+                    </ScrollView>
                 </StackLayout>
                 <StackLayout
                     Padding="18,0">
@@ -130,16 +194,19 @@
                             AutoSize="TextChanges"
                             Text="{Binding Comment}" />
                     </inputLayout:SfTextInputLayout>
-                    <buttons:SfButton
-                        IsVisible="{Binding IsEditMode}"
-                        Style="{StaticResource CustomButton}"
-                        Text="Додати"
-                        Command="{Binding AddProductItemCommand}" />
-                    <buttons:SfButton
-                        IsVisible="{Binding IsEditMode, Converter={converters:BooleanConverter}}"
-                        Style="{StaticResource CustomButton}"
-                        Text="Відредагувати"
-                        Command="{Binding EditProductItemCommand}" />
+                    <StackLayout
+                        Margin="0,0,0,128">
+                        <buttons:SfButton
+                            IsVisible="{Binding IsEditMode}"
+                            Style="{StaticResource CustomButton}"
+                            Text="Додати"
+                            Command="{Binding AddProductItemCommand}" />
+                        <buttons:SfButton
+                            IsVisible="{Binding IsEditMode, Converter={converters:BooleanConverter}}"
+                            Style="{StaticResource CustomButton}"
+                            Text="Відредагувати"
+                            Command="{Binding EditProductItemCommand}" />
+                    </StackLayout>
                 </StackLayout>
             </StackLayout>
         </ScrollView>

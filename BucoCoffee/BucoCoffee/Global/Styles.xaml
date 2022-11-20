@@ -63,13 +63,7 @@
             Property="CornerRadius"
             Value="16" />
     </Style>
-    
+
     <!--#endregion-->
     
 </ResourceDictionary>
-    
-<!--
-
-    
-    
-    -->
