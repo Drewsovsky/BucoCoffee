@@ -38,7 +38,6 @@ namespace BucoCoffee.ViewModels
         public ProductItem DTOSelectedProduct { get; set; }
         public bool IsEditMode { get; set; } = false;
 
-
         public ICommand AddProductItemCommand => new Command(AddProductItem);
         public ICommand EditProductItemCommand => new Command(EditProductItem);
 
