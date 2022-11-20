@@ -10,6 +10,16 @@
     xmlns:converters="clr-namespace:BucoCoffee.Helper.Converter"
     x:Class="BucoCoffee.Views.NewItemPage"
     Title="BucoCoffee">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem
+            Text="Обрати фото"
+            Order="Secondary"
+            Command="{Binding SelectFromGalleryCommand}" />
+        <ToolbarItem
+            Text="Зробити фото"
+            Order="Secondary"
+            Command="{Binding TakePhotoCommand}" />
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView
             BackgroundColor="{StaticResource GhostWhite}">
@@ -19,20 +29,13 @@
                     Background="coral">
                     <StackLayout
                         Spacing="0"
-                        HorizontalOptions="EndAndExpand"
-                        BackgroundColor="Green">
+                        HorizontalOptions="EndAndExpand">
                         <ImageButton
                             HeightRequest="50"
                             WidthRequest="50"
                             Padding="10"
-                            Source="gallery"
-                            Command="{Binding SelectFromGalleryCommand}" />
-                        <ImageButton
-                            HeightRequest="50"
-                            WidthRequest="50"
-                            Padding="10"
-                            Source="camera" 
-                            Command="{Binding TakePhotoCommand}"/>
+                            Source="remove"
+                            Command="{Binding RemoveCurrentPhotoCommand}" />
                     </StackLayout>
 
                     <ScrollView

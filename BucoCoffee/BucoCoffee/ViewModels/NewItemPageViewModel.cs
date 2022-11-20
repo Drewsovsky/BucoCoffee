@@ -41,15 +41,14 @@ namespace BucoCoffee.ViewModels
         public ICommand AddProductItemCommand => new Command(AddProductItem);
         public ICommand EditProductItemCommand => new Command(EditProductItem);
         public ICommand TakePhotoCommand => new Command(TakePhoto);
+        public ICommand SelectFromGalleryCommand => new Command(SelectFromGallery);
+        public ICommand RemoveCurrentPhotoCommand => new Command(RemoveCurrentPhoto);
         // TODO:
-        private void TakePhoto()
+        private void SelectFromGallery()
         {
 
         }
-
-        public ICommand SelectFromGalleryCommand => new Command(SelectFromGallery);
-        // TODO:
-        private void SelectFromGallery()
+        private void RemoveCurrentPhoto()
         {
 
         }
@@ -175,6 +174,15 @@ namespace BucoCoffee.ViewModels
             {
                 Console.WriteLine("Error found: " + ex);
             }
+        }
+
+        private void TakePhoto()
+        {
+            // Take photo
+            // Add photo into list
+            // Show photo in view 
+            // Remove photo
+            // Send photo to DB + Storage
         }
     }
 }
