@@ -8,6 +8,7 @@
     xmlns:combobox="clr-namespace:Syncfusion.XForms.ComboBox;assembly=Syncfusion.SfComboBox.XForms"
     xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
     xmlns:converters="clr-namespace:BucoCoffee.Helper.Converter"
+    xmlns:tint="clr-namespace:Plugin.CrossPlatformTintedImage.Abstractions;assembly=Plugin.CrossPlatformTintedImage.Abstractions"
     x:Class="BucoCoffee.Views.NewItemPage"
     Title="BucoCoffee">
     <ContentPage.ToolbarItems>
@@ -28,14 +29,29 @@
                     HeightRequest="400"
                     Background="coral">
                     <StackLayout
+                        Padding="8"
                         Spacing="0"
                         HorizontalOptions="EndAndExpand">
-                        <ImageButton
-                            HeightRequest="50"
-                            WidthRequest="50"
-                            Padding="10"
-                            Source="remove"
-                            Command="{Binding RemoveCurrentPhotoCommand}" />
+                        <Frame
+                            BackgroundColor="{StaticResource RedChilli}"
+                            HeightRequest="40"
+                            WidthRequest="40"
+                            CornerRadius="5"
+                            Padding="5">
+                            <StackLayout>
+                                <tint:TintedImage
+                                    VerticalOptions="CenterAndExpand"
+                                    HorizontalOptions="CenterAndExpand"
+                                    HeightRequest="30"
+                                    Source="remove"
+                                    TintColor="white" />
+                            </StackLayout>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding RemoveCurrentPhotoCommand}" />
+                            </Frame.GestureRecognizers>
+                        </Frame>
+                        
                     </StackLayout>
 
                     <ScrollView

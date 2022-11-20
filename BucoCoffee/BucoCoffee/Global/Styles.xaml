@@ -12,6 +12,8 @@
     <Color x:Key="GhostWhite">#E8E9F3</Color>
     <Color x:Key="LightGray">#CECECE</Color>
     <Color x:Key="QuickSilver">#A6A6A8</Color>
+    <Color x:Key="RedPresian">#CA3433</Color>
+    <Color x:Key="RedChilli">#C21807</Color>
     
     <!--#endregion-->
 
